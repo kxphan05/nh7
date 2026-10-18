@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kopi · Language</title><link rel="stylesheet" href="kopi.css?v=2"><script src="i18n.js?v=2"></script><script src="audio/manifest.js?v=2"></script><script src="kopi.js?v=2"></script></head>
+<body>
+<div class="kopi single"><div class="in"><div class="say" id="say">🌐</div><div class="btns grid" id="btns"></div></div></div>
+<script>
+document.body.dataset.noidle=1;
+const B=$('#btns');
+[['en','English'],['zh','中文'],['ms','Bahasa Melayu'],['ta','தமிழ்']].forEach(([c,n])=>{
+  const x=document.createElement('button');x.textContent=n;
+  x.onclick=async()=>{await speak(n,VOICE[c]);location.href='voice.html?l='+c+'&r='+RATE};B.append(x)});
+</script></body></html>

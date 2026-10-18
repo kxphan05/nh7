@@ -1,0 +1,59 @@
+NH0007 Assignment 2 – Guidance for Your Poster, Mockup and Presentation
+
+Dear Students,
+
+
+As you begin working on Assignment 2, I would like to share a few suggestions to help your group develop a stronger proposal.
+
+
+Right after this week’s class, I’ll release the spreadsheet to book your team’s slot for next week’s consultation (similar to what we did for Assignment 1 – 15 minutes max per team, Online).
+
+
+Please refer to "NH0007 Brief for Assignment 2.pdf", available on our NTULearn Cluster Site, for the official requirements and grading rubric.
+
+
+Recommendations:
+
+    Focus on a specific problem. You do not need an overly ambitious or futuristic solution. A simpler, realistic solution to a well-defined problem, supported by strong reasoning, is often more convincing.
+    Make your problem-to-solution logic clear. Explain what is currently being done, what gap remains, how your solution works, and what meaningful value it adds. Be specific about the role of AI and why it is appropriate.
+    Apply the three interdisciplinary lenses. Consider the STEM, Business/Governance, and Social Sciences/Humanities perspectives. More importantly, demonstrate how these perspectives interact and influence your proposed solution.
+    Develop a meaningful AI-assisted mockup. Your mockup should help stakeholders understand how your solution would work in practice. It could be a chatbot prototype, an app interface mockup, or a visual storyboard. Focus on demonstrating the key features and value of your idea rather than technical sophistication.
+    Define a clear human-in-the-loop (HITL) protocol. Do not simply state that "humans will supervise the AI". Explain exactly when, why and how a human should intervene or override an AI decision, especially to prevent errors, bias or ethical harm.
+    Be realistic about implementation. Explain how your solution could work in Singapore, considering existing infrastructure, policies, costs and practical constraints. I also encourage you to think about how you could test its effectiveness through a small pilot.
+    Think about your audience. Your poster should be visually clear and understandable on its own. Approach the oral presentation as a pitch to relevant stakeholders, explaining why they should consider your proposal, and be prepared to answer questions.
+
+
+A final suggestion: Prioritise depth, clarity and coherence over the complexity or scale of your solution. A convincing proposal demonstrates not only what the solution could do, but also how it creates value, where its limitations lie, and when human judgement must take priority.
+
+
+Submission reminder: Assignment 2 consists of an A3 poster (PDF), a practical AI-assisted mockup, and an oral presentation (maximum 10 minutes) in Week 13. Submit your poster + mockup via NTULearn before your tutorial. All group members must attend, although not everyone needs to present. Only cue cards are permitted during the presentation.
+
+
+Best regards,
+
+HM
+
+Hi team B4,
+
+
+Thank you for your Assignment1 submission on the challenges faced by older caregivers in Singapore. Your focus is on the “double burden” of age-related functional decline coupled with demanding caregiving responsibilities. The gap identified is that digital technologies and government support intended to reduce caregiving burden may themselves be difficult to access when older caregivers face physical limitations and digital barriers.
+
+
+What was done well
+
+    Your problem statement links ageing populations with the specific physical, psychological, and technological pressures experienced by older caregivers. This moves beyond treating caregiver burden as a single issue and highlights a critical contradiction: support may exist, but its mode of delivery can make it inaccessible to the people who need it.
+    Your reasoning, identifying a disconnect between general digital-skills initiatives and the specific demands of caregiving technologies, can potentially be a good baseline for assignment 2. But, you currently combine financial, physical, and technological barriers without establishing which is the primary bottleneck. For assignment 2 you should pick just one specific functional decline that directly creates difficulty with a particular caregiving technology or support service.
+    Your AI reflection shows valid critical steering. The model’s failure to distinguish the burdens faced by younger and older caregivers is a great example, and the way you dealt with this shows human agency.
+
+
+Suggestions for ASSIGNMENT 2 (optional only)
+
+One possible continuation would be to pick one specific digital interaction that older caregivers must complete to access caregiving support, focusing on how an age-related functional limitation creates friction during that task.
+
+
+If you choose this direction, define the functional limitation, the interface or service involved, and the specific task that becomes difficult. Then, this clearer barrier would be exactly what your solution needs to mitigate/overcome.
+
+
+Keep up the good work!
+
+HM

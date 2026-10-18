@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kopi · Presenter</title><link rel="stylesheet" href="kopi.css?v=2"></head>
+<body style="padding:24px;max-width:720px;margin:auto">
+<h2>Presenter only</h2>
+<p>Language: <select id="l" style="font-size:20px"><option value="en">English</option><option value="zh">中文</option><option value="ms">Melayu</option><option value="ta">தமிழ்</option></select></p>
+<ul class="pres" id="list"></ul>
+<script>
+const S=[['1. Opt-in help','index.html'],['2. Language','lang.html'],['3. Voice by chat','voice.html'],['4. Read aloud + plain language','read.html'],
+ ['5. Fill + read back','fill.html'],['6. Private fields (user only)','private.html'],['7. User submits, data deleted','submit.html'],
+ ['HITL: not sure → hotline','stop.html?why=unsure'],['HITL: silence → pause','stop.html?why=quiet'],['HITL: scam → halt','stop.html?why=scam']];
+const l=document.getElementById('l'),ul=document.getElementById('list');
+function draw(){ul.innerHTML='';S.forEach(([n,p])=>{const li=document.createElement('li'),a=document.createElement('a');
+  a.textContent=n;a.href=p+(p.includes('?')?'&':'?')+'l='+l.value;li.append(a);ul.append(li)})}
+l.onchange=draw;draw();
+</script></body></html>

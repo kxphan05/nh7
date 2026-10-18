@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kopi · Stop</title><link rel="stylesheet" href="kopi.css?v=2"><script src="i18n.js?v=2"></script><script src="audio/manifest.js?v=2"></script><script src="kopi.js?v=2"></script></head>
+<body>
+<div class="kopi single"><div class="in"><div class="say" id="say"></div><div class="btns" id="btns"></div></div></div>
+<script>
+// Human-in-the-loop cases. Kopi stops completely; nothing is filled or sent.
+document.body.dataset.noidle=1;boot();
+const why=Q.get('why'),from=Q.get('from')||'index.html';
+if(why==='scam')document.body.classList.add('scam');
+const back=k=>[[t(k),()=>{location.href=from}]];
+show('stop_'+(why||'unsure'),why==='unsure'?[]:back(why==='scam'?'close':'carry'));
+</script></body></html>

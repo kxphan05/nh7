@@ -1,0 +1,44 @@
+:root{--bg:#f6f1e7;--ink:#1d1a16;--kopi:#7b4a24;--ok:#1d7a3e;--warn:#b3261e}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:20px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans SC","Noto Sans Tamil",sans-serif}
+.form{flex:1;overflow:auto;max-width:720px;width:100%;margin:0 auto;padding:20px 20px 0}
+.form small{color:#777;font-size:14px}
+.blk{background:#fff;border:1px solid #d8cfbf;border-radius:10px;padding:14px 18px;margin:12px 0;opacity:.3;transition:opacity .3s}
+.blk{position:relative}
+.blk.spot{opacity:1;outline:4px solid var(--kopi)}
+.blk.spot[data-here]:not([data-here=""])::before{content:attr(data-here);position:absolute;top:-14px;left:14px;background:var(--kopi);color:#fff;font-size:14px;font-weight:700;padding:2px 12px;border-radius:999px}
+.blk label.f{font-weight:400;margin-top:8px}
+.blk label.f input{display:block;width:100%;margin-top:3px;font:inherit;font-size:18px;padding:6px 10px;border:1px solid #aaa;border-radius:6px}
+.note{display:block;margin-top:8px;color:#555;font-size:14px}
+.submit.pulse,#sub:not(:disabled){animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 #2b5aa788}50%{box-shadow:0 0 0 10px #2b5aa700}}
+.blk h1{font-size:1.1em;margin:0 0 4px}
+.blk p{margin:0;font-size:16px}
+.blk label{display:block;font-weight:600;font-size:16px}
+.val{display:block;min-height:2em;border:1px solid #aaa;border-radius:6px;padding:3px 10px;background:#fafafa}
+.val.done{border-color:var(--ok);background:#eef8f0}
+.cue{display:inline-block;margin:0 0 12px;padding:10px 18px;border-radius:12px;background:var(--kopi);color:#fff;font-weight:700;font-size:20px;animation:nudge 1.6s ease-in-out infinite}
+.cue[hidden]{display:none}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.steps{display:flex;align-items:center;gap:8px;font-size:16px;color:#666;margin-top:4px}
+.steps b{margin-right:6px;color:var(--ink)}
+.steps i{width:28px;height:9px;border-radius:99px;background:#ddd2bf}
+.steps i.done{background:var(--ok)}.steps i.now{background:var(--kopi)}
+.blk.spot.you{outline-color:#2b5aa7;background:#f3f7ff}
+.blk.spot.you::before{background:#2b5aa7!important}
+.submit{font-size:20px;padding:12px 28px;border:0;border-radius:8px;background:#2b5aa7;color:#fff}
+.submit:disabled{animation:none}
+.kopi{background:#fff;border-top:4px solid var(--kopi);padding:18px 24px 24px;position:relative}
+.kopi.single{flex:1;display:flex;flex-direction:column;justify-content:center;border:0;background:var(--bg)}
+.kopi .in{max-width:720px;margin:0 auto;width:100%}
+.person{position:absolute;top:10px;right:16px;font-size:15px;color:#666}
+.say{font-size:clamp(24px,4.5vw,34px);line-height:1.35;margin:18px 0;cursor:pointer;min-height:2.7em}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btns button{flex:1;min-width:150px;min-height:64px;font-size:24px;font-weight:700;border-radius:14px;border:3px solid var(--kopi);background:#fff;color:var(--kopi);cursor:pointer}
+.btns button:first-child{background:var(--kopi);color:#fff}
+.btns.grid{display:grid;grid-template-columns:1fr 1fr}
+.btns.grid button{background:#fff;color:var(--kopi);min-height:110px;font-size:30px}
+body.scam{background:#fde7e5}body.scam .say{color:var(--warn)}
+body.scam .kopi{background:#fde7e5}
+ul.pres{font-size:22px;line-height:2}

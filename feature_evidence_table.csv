@@ -1,0 +1,11 @@
+Feature,Problem it fixes,Evidence
+"Reads the page aloud and highlights the section being read","Vision decline blocks use of complex websites","Vision impairment is a named barrier to digital use [9]"
+"Explains jargon in plain language and chats about what the site is for","Caregivers miss or can't act on support they don't understand","Information gaps on government support [13]; complex interfaces cost efficiency [11]"
+"Voice-first, no settings menus (speed and volume set in a short chat)","Steep learning curve for caregiving technology","Teaching the technology is the biggest challenge [10, 11]"
+"Fills non-sensitive fields; never submits without explicit consent; reads back every entry","Form complexity causes errors; safety and reliability worries cause distrust","Complexity [9, 11]; distrust of reliability and safety [8, 12]"
+"Says 'I'm not sure' and refers to the hotline","Distrust of technology's reliability","Reliability and effectiveness concerns hinder adoption [8, 12]"
+"Appears only if opted in or if struggle is detected","Older caregivers avoid asking for help","Caregiving seen as personal duty; rarely delegated [3, 6]"
+"Free setup through hospitals, CCs, Silver Generation Office and volunteers","Affordability, complexity and teaching are barriers; no caregiving-specific digital support","Affordability and complexity [9]; teaching is hardest [10]; Seniors Go Digital is general only [14]"
+"Singpass stays with the user; works under agency agreements","Support is delivered by agencies in a state-family model","State-family model [15]; schemes [14]; information gaps [13]"
+"Scam and safety warnings","Safety concerns about technology","[ADD SOURCE]; loosely linked to [8]"
+"Captions; English, Mandarin, Malay, Tamil support","Hearing loss and language needs","[ADD SOURCE]"

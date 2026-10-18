@@ -1,0 +1,92 @@
+#!/usr/bin/env python3
+"""Regenerate mockup/audio/*.mp3 and audio/manifest.js from mockup/i18n.js.
+
+Uses edge-tts (Microsoft neural voices, no API key). Setup:
+    python3 -m venv .venv && .venv/bin/pip install edge-tts
+    .venv/bin/python tools/make_audio.py            # only new/changed lines
+    .venv/bin/python tools/make_audio.py --force    # redo everything
+
+To try another voice, change VOICES below and re-run with --force.
+List voices:  .venv/bin/edge-tts --list-voices | grep en-
+Clips are named <lang>_<hash of voice+text>.mp3, so changing a line or a
+voice automatically gives a new file; unused clips are deleted at the end.
+"""
+import asyncio, hashlib, json, subprocess, sys
+from pathlib import Path
+import edge_tts
+
+ROOT = Path(__file__).resolve().parent.parent / "mockup"
+AUDIO = ROOT / "audio"
+
+# Conversation-style voices sound least like a reading machine.
+VOICES = {
+    "en": "en-US-AvaMultilingualNeural",
+    "zh": "zh-CN-XiaoxiaoNeural",
+    "ms": "ms-MY-YasminNeural",
+    "ta": "ta-SG-VenbaNeural",
+}
+RATE = "-8%"   # a little slower than normal for older listeners
+
+# Lines Kopi speaks (the hear button and auto-play). Button labels are not spoken.
+SPOKEN = ["help_q", "no_msg", "voice_q", "read_i", "rel_q", "hrs_q", "priv", "sub",
+          "fin", "stop_unsure", "stop_quiet", "stop_scam"]
+CONFIRM_VALUES = ["v_spouse", "v_parent", "v_part", "v_all"]
+LANG_NAMES = {"en": "English", "zh": "中文", "ms": "Bahasa Melayu", "ta": "தமிழ்"}
+
+# Same cleaning as app.js / kopi.js so the manifest keys match at runtime.
+NODE = r"""
+const fs=require('fs');
+eval(fs.readFileSync(process.argv[1],'utf8')+';globalThis.STR=STR');
+const EMOJI=/[\u{1F300}-\u{1FAFF}☀-➿⏸️]/gu;
+const clean=s=>s.replace(EMOJI,'').replace(/\s+/g,' ').trim();
+const spoken=JSON.parse(process.argv[2]),vals=JSON.parse(process.argv[3]),names=JSON.parse(process.argv[4]);
+const out=[];
+for(const l of Object.keys(STR)){
+  for(const k of spoken)out.push([l,clean(STR[l][k])]);
+  for(const v of vals)out.push([l,clean(STR[l].confirm.replace('{v}',STR[l][v]))]);
+  out.push([l,clean(names[l])]);
+}
+console.log(JSON.stringify(out));
+"""
+
+
+def lines():
+    raw = subprocess.check_output(
+        ["node", "-e", NODE, str(ROOT / "i18n.js"), json.dumps(SPOKEN),
+         json.dumps(CONFIRM_VALUES), json.dumps(LANG_NAMES, ensure_ascii=False)])
+    return json.loads(raw)
+
+
+async def main(force):
+    AUDIO.mkdir(exist_ok=True)
+    todo, manifest, keep = [], {}, set()
+    for lang, text in lines():
+        name = f"{lang}_{hashlib.sha1((VOICES[lang] + RATE + text).encode()).hexdigest()[:10]}.mp3"
+        manifest[f"{lang}|{text}"] = f"audio/{name}"
+        keep.add(name)
+        if force or not (AUDIO / name).exists():
+            todo.append((lang, text, AUDIO / name))
+    sem = asyncio.Semaphore(4)
+
+    async def one(lang, text, path):
+        async with sem:
+            for attempt in range(3):
+                try:
+                    await edge_tts.Communicate(text, VOICES[lang], rate=RATE).save(str(path))
+                    return
+                except Exception as e:
+                    if attempt == 2:
+                        raise
+                    await asyncio.sleep(2)
+
+    await asyncio.gather(*(one(*x) for x in todo))
+    (AUDIO / "manifest.js").write_text(
+        "const AUDIO={\n" + ",\n".join(f"{json.dumps(k, ensure_ascii=False)}: {json.dumps(v)}"
+                                        for k, v in manifest.items()) + "\n};\n")
+    for f in AUDIO.glob("*.mp3"):
+        if f.name not in keep:
+            f.unlink()
+    print(f"{len(todo)} generated, {len(manifest)} lines in manifest")
+
+
+asyncio.run(main("--force" in sys.argv))

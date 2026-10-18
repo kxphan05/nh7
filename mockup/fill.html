@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kopi · Fill</title><link rel="stylesheet" href="kopi.css?v=2"><script src="i18n.js?v=2"></script><script src="audio/manifest.js?v=2"></script><script src="kopi.js?v=2"></script></head>
+<body>
+<div class="form" id="form"></div>
+<div class="kopi"><div class="in"><a class="person" id="person"></a><div class="say" id="say"></div><div class="btns" id="btns"></div></div></div>
+<script>
+// one field per screen: ask (2 answers) -> write it -> read it back -> user confirms
+const N=+Q.get('n')||0;
+const F=[
+ {id:'rel',q:'rel_q',o:[['spouse','Spouse'],['parent','Parent']]},
+ {id:'hrs',q:'hrs_q',o:[['part','About 20 hours'],['all','About 70 hours']]}][N];
+renderForm();boot(3+N);
+if(N>0){setVal('rel',Q.get('rel'))}
+spot('b-'+F.id);
+function ask(){
+  setVal(F.id,'');
+  show(F.q,F.o.map(([k,v])=>[t(k),()=>confirm(k,v)]))}
+function confirm(k,v){
+  setVal(F.id,v);
+  show('confirm',[
+    [t('right'),()=>N===0?go('fill.html',{n:1,rel:v}):go('private.html')],
+    [t('change'),ask]],{text:t('confirm',t('v_'+k))})}
+ask();
+</script></body></html>

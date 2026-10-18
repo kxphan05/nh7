@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kopi · Read</title><link rel="stylesheet" href="kopi.css?v=2"><script src="i18n.js?v=2"></script><script src="audio/manifest.js?v=2"></script><script src="kopi.js?v=2"></script></head>
+<body>
+<div class="form" id="form"></div>
+<div class="kopi"><div class="in"><a class="person" id="person"></a><div class="say" id="say"></div><div class="btns" id="btns"></div></div></div>
+<script>
+renderForm();boot(2);spot('b-title');
+// read the page aloud (in English, as written), then explain it in the user's language
+show('read_i',[[t('next'),()=>go('fill.html',{n:0})]],{auto:false});
+(async()=>{$('#b-title').classList.add('spot');await speak(t('read_i'))})();
+</script></body></html>

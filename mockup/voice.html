@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kopi · Voice</title><link rel="stylesheet" href="kopi.css?v=2"><script src="i18n.js?v=2"></script><script src="audio/manifest.js?v=2"></script><script src="kopi.js?v=2"></script></head>
+<body>
+<div class="kopi single"><div class="in"><a class="person" id="person"></a><div class="say" id="say"></div><div class="btns" id="btns"></div></div></div>
+<script>
+boot(1);
+// Speed is set by answering, not by a settings menu: "Slower" replays this line slower.
+show('voice_q',[
+  [t('slower'),()=>go('voice.html',{r:Math.max(.5,RATE-.15).toFixed(2)})],
+  [t('ok'),()=>go('read.html')]]);
+</script></body></html>
