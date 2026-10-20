@@ -13,7 +13,9 @@ st.markdown(
     """<style>
     #MainMenu, header, footer, [data-testid="stToolbar"], [data-testid="stDecoration"]{display:none!important}
     .block-container{padding:0!important;max-width:100%!important}
-    iframe{border:0;width:100%}
+    html,body,.stApp,[data-testid="stAppViewContainer"],[data-testid="stMain"]{background:#faf9f5!important;overflow:hidden!important}
+    /* the chatbot fills the whole browser window, so it doesn't look like a box inside a page */
+    iframe{position:fixed!important;inset:0;width:100vw!important;height:100vh!important;border:0;z-index:9999}
     </style>""",
     unsafe_allow_html=True,
 )
@@ -23,4 +25,4 @@ page = st.query_params.get("page", "index.html")
 if page not in ("index.html", "presenter.html", "eliza.html"):
     page = "index.html"
 
-st.iframe(f"/app/static/mockup/{page}", height=820)
+st.iframe(f"/app/static/mockup/{page}", height=700)
