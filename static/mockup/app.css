@@ -102,3 +102,11 @@ button{font:inherit;cursor:pointer}
 .box .send:disabled{opacity:.3;cursor:default}
 .disc{max-width:720px;margin:4px auto 0;text-align:center;font-size:.5em;color:var(--mute)}
 .m.k .body{white-space:pre-wrap}
+/* narrow screens: keep Kopi's question visible above the buttons */
+@media(max-width:960px){
+ .main.showform .doc{max-height:30vh;padding:10px 16px}
+ .main.showform .doc .blk{margin:4px 0;padding:6px 10px}
+ .chips{gap:6px;margin-left:1em}.chips button{min-height:48px;padding:8px 14px}
+ .cue{font-size:.7em;padding:6px 12px;margin:4px 0}
+ .m{margin:10px 0}.composer{padding:6px 12px 8px}.foot,.disc{display:none}
+}

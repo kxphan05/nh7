@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KopiKaki Poster</title>
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  :root {
+    --cream: #FFF6E5; --card: #FFFFFF; --brown: #4A2C1A; --teal: #167A7A;
+    --teal-light: #D9F0EE; --orange: #E8742A; --orange-light: #FDE6D3; --muted: #7A6455; --gold: #F6B26B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #ddd; }
+  body { font-family: "Helvetica Neue", Arial, "Liberation Sans", sans-serif; color: var(--brown); }
+  .poster { width: 297mm; height: 420mm; background: var(--cream); padding: 9mm 12mm 6mm; display: flex; flex-direction: column; gap: 3.5mm; overflow: hidden; margin: 0 auto; }
+  .tag { font-size: 10pt; font-weight: 700; color: var(--teal); white-space: nowrap; }
+  .on-dark .tag, .cap .tag { color: var(--gold); }
+  h2 { font-size: 17pt; letter-spacing: .04em; text-transform: uppercase; color: var(--orange); margin-bottom: 2mm; }
+  h2 .n { display: inline-block; width: 9mm; height: 9mm; line-height: 9mm; text-align: center; border-radius: 50%; background: var(--orange); color: #fff; margin-right: 3mm; font-size: 14pt; }
+
+  header { display: flex; align-items: center; gap: 8mm; background: var(--brown); color: var(--cream); border-radius: 5mm; padding: 2.5mm 9mm; }
+  header h1 { font-size: 46pt; line-height: 1; letter-spacing: -.01em; }
+  header h1 span { color: var(--gold); }
+  header p { font-size: 18pt; margin-top: 1.5mm; line-height: 1.2; }
+
+  /* photo cards */
+  .photos { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; }
+  .ph { position: relative; border-radius: 4mm; overflow: hidden; background: #333; }
+  .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph .credit { position: absolute; right: 2mm; top: 1.5mm; font-size: 6.5pt; color: #fff; background: rgba(0,0,0,.45); padding: .5mm 1.5mm; border-radius: 1mm; }
+  .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 8mm 4mm 3.5mm; color: #fff; font-size: 16pt; font-weight: 700; line-height: 1.15; background: linear-gradient(transparent, rgba(40,20,10,.88)); }
+  .cap big { display: block; font-size: 30pt; line-height: 1; color: var(--gold); }
+  .problem .ph { height: 47mm; }
+  .statement { margin-top: 3.5mm; display: grid; grid-template-columns: 1.6fr 1fr; gap: 4mm; }
+  .statement .s1 { background: var(--brown); color: var(--cream); border-radius: 4mm; padding: 2.5mm 5mm; font-size: 17pt; font-weight: 700; line-height: 1.2; display:flex; align-items:center; }
+  .statement .s2 .tag { color: var(--teal); }
+  .statement .s2 { background: var(--orange-light); border-radius: 4mm; padding: 2.5mm 5mm; font-size: 14.5pt; line-height: 1.2; display:flex; align-items:center; }
+
+  /* solution */
+  .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4.5mm; }
+  .step { background: var(--card); border-radius: 4mm; padding: 2mm 2mm; text-align: center; position: relative; border-bottom: 2mm solid var(--teal); }
+  .step .ic { font-size: 26pt; line-height: 1; }
+  .step b { display: block; font-size: 15pt; margin-top: 1.5mm; line-height: 1.1; }
+  .step .tag { display:block; margin-top: .5mm; }
+  .step:not(:last-child)::after { content: "➜"; position: absolute; right: -5.2mm; top: 50%; transform: translateY(-50%); color: var(--orange); font-size: 16pt; z-index: 2; }
+  .step.key { background: var(--teal); color: #fff; border-bottom-color: var(--orange); }
+  .step.key .tag { color: var(--gold); }
+  .tiles { display: grid; grid-template-columns: 58mm 1fr 1fr; gap: 4mm; margin-top: 4mm; }
+  .tiles .ph { height: 46mm; }
+  .phone { width: 58mm; height: 46mm; background: #2c1a10; border-radius: 6mm; padding: 2.5mm; }
+  .screen { background: #fff; width: 100%; height: 100%; border-radius: 4mm; padding: 3mm; position: relative; overflow: hidden; }
+  .screen .bar { height: 3.5mm; background: #e6e0d8; border-radius: 1mm; margin-bottom: 2mm; }
+  .screen .hl { height: 7mm; background: #FFE08A; border-radius: 1mm; margin-bottom: 2mm; outline: 0.6mm solid var(--orange); }
+  .screen .bubble { position: absolute; left: 3mm; right: 3mm; bottom: 13mm; background: var(--teal-light); border-radius: 3mm; padding: 2mm 2.5mm; font-size: 10.5pt; line-height: 1.2; font-weight: 700; }
+  .screen .cup { position: absolute; left: 3mm; bottom: 2mm; }
+  .screen .btns { position: absolute; right: 3mm; bottom: 3.5mm; display: flex; gap: 1.5mm; }
+  .screen .btns i { font-style: normal; font-size: 10pt; font-weight: 700; padding: 1.2mm 2.5mm; border-radius: 2mm; }
+  .yes { background: var(--teal); color: #fff; } .no { background: #eee; }
+  .promise { background: var(--teal-light); border-radius: 4mm; padding: 4mm 5mm; display: flex; flex-direction: column; justify-content: center; gap: 2.5mm; font-size: 16pt; font-weight: 700; color: var(--teal); }
+  .promise div { display: flex; gap: 3mm; align-items: center; }
+  .promise .ic { font-size: 20pt; }
+
+  /* lenses */
+  .lenses { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .lens { background: var(--card); border-radius: 4mm; padding: 2.5mm 5mm; display: grid; grid-template-columns: 14mm 1fr; gap: 3mm; align-items: center; }
+  .lens .ic { font-size: 30pt; text-align: center; }
+  .lens h3 { font-size: 13pt; color: var(--teal); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 1mm; }
+  .lens p { font-size: 14.5pt; line-height: 1.2; }
+  .together { margin-top: 3mm; text-align: center; font-size: 15pt; font-weight: 700; background: var(--teal-light); border-radius: 4mm; padding: 2.5mm 4mm; }
+
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .row { display: grid; grid-template-columns: 12mm 1fr; gap: 3mm; align-items: center; background: var(--card); border-radius: 3.5mm; padding: 1.5mm 4mm; margin-bottom: 1.8mm; font-size: 15pt; line-height: 1.15; }
+  .row .ic { font-size: 22pt; text-align: center; }
+  .row b { color: var(--orange); }
+  .proposed { font-size: 10pt; color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0; margin-left: 2mm; }
+
+  .bottom { display: grid; grid-template-columns: 1.15fr 1fr; gap: 6mm; }
+  .act { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+  .act div { background: var(--card); border-radius: 3.5mm; padding: 2mm 3mm; font-size: 13.5pt; line-height: 1.1; text-align: center; }
+  .act .ic { font-size: 20pt; display:block; }
+  .act b { display: block; color: var(--teal); font-size: 14.5pt; }
+  .pilot { background: var(--brown); color: var(--cream); border-radius: 4mm; padding: 3mm 5mm; }
+  .pilot h2 { color: var(--gold); margin-bottom: 1.5mm; }
+  .pilot h2 .n { background: var(--gold); color: var(--brown); }
+  .pilot p { font-size: 14pt; line-height: 1.2; }
+  .pilot p + p { margin-top: 1.5mm; }
+
+  footer { margin-top: auto; font-size: 7.5pt; line-height: 1.3; color: var(--muted); border-top: .3mm solid #d8c9b6; padding-top: 1.8mm; }
+  footer b { color: var(--brown); }
+  footer .pc { margin-top: 1mm; }
+  @media print { html, body { background: none; } }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header>
+    <svg width="84" height="100" viewBox="0 0 84 100" aria-label="Kopi the coffee cup mascot">
+      <path d="M26 10 q-6 -8 0 -12 M42 10 q-6 -8 0 -12 M58 10 q-6 -8 0 -12" stroke="#F6B26B" stroke-width="3" fill="none" stroke-linecap="round" transform="translate(0,6)"/>
+      <path d="M8 24 h58 v32 a29 29 0 0 1 -58 0z" fill="#FFF6E5"/>
+      <path d="M66 32 h6 a10 10 0 0 1 0 22 h-8" fill="none" stroke="#FFF6E5" stroke-width="6"/>
+      <rect x="4" y="22" width="66" height="7" rx="3" fill="#E8742A"/>
+      <circle cx="26" cy="52" r="3.5" fill="#4A2C1A"/><circle cx="48" cy="52" r="3.5" fill="#4A2C1A"/>
+      <path d="M26 63 q11 10 22 0" stroke="#4A2C1A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="18" cy="60" rx="4" ry="2.6" fill="#F6B26B"/><ellipse cx="56" cy="60" rx="4" ry="2.6" fill="#F6B26B"/>
+      <ellipse cx="37" cy="92" rx="34" ry="5" fill="#FFF6E5" opacity=".5"/>
+    </svg>
+    <div>
+      <h1>Kopi<span>Kaki</span></h1>
+      <p>A voice-first AI friend that helps older caregivers finish online support forms.</p>
+    </div>
+  </header>
+
+  <section class="problem">
+    <h2><span class="n">1</span>The problem</h2>
+    <div class="photos">
+      <div class="ph"><img src="images/grandson.jpg" style="object-position:30% 40%" alt="Grandmother holding a child"><span class="credit">AnikaMeyer, CC BY-SA 4.0</span>
+        <div class="cap"><big>62</big>median age of daily caregivers <span class="tag">[1]</span></div></div>
+      <div class="ph"><img src="images/phone.jpg" style="object-position:50% 35%" alt="Woman looking at her phone"><span class="credit">Shixart1985, CC BY 2.0</span>
+        <div class="cap">Support is online, but hard to see and find <span class="tag">[9, 11, 13]</span></div></div>
+      <div class="ph"><img src="images/kopitiam.jpg" style="object-position:20% 50%" alt="Singapore coffee shop"><span class="credit">mailer_diablo, CC BY-SA 3.0</span>
+        <div class="cap">They won't ask for help <span class="tag">[3, 5, 6]</span></div></div>
+    </div>
+    <div class="statement on-dark">
+      <div class="s1">Older caregivers with declining vision give up on online support forms.</div>
+      <div class="s2">No caregiving-specific digital help exists <span class="tag">&nbsp;[14]</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>The solution: Kopi reads, explains, fills in. You decide.</h2>
+    <div class="flow">
+      <div class="step"><div class="ic">🙋</div><b>Offers help</b><span class="tag">[3, 6]</span></div>
+      <div class="step"><div class="ic">🔊</div><b>Reads aloud</b><span class="tag">[9]</span></div>
+      <div class="step"><div class="ic">💬</div><b>Explains simply</b><span class="tag">[11, 13]</span></div>
+      <div class="step"><div class="ic">✍️</div><b>Fills in, reads back</b><span class="tag">[11]</span></div>
+      <div class="step key"><div class="ic">✅</div><b>You say "yes"</b><span class="tag">[8]</span></div>
+    </div>
+    <div class="tiles">
+      <div class="phone"><div class="screen">
+        <div class="bar" style="width:70%"></div><div class="hl"></div>
+        <div class="bubble">“Shall I help fill in this box?”</div>
+        <svg class="cup" width="28" height="33" viewBox="0 0 84 100"><path d="M8 24 h58 v32 a29 29 0 0 1 -58 0z" fill="#4A2C1A"/><rect x="4" y="22" width="66" height="7" rx="3" fill="#E8742A"/><circle cx="26" cy="52" r="4" fill="#FFF6E5"/><circle cx="48" cy="52" r="4" fill="#FFF6E5"/></svg>
+        <div class="btns"><i class="yes">Yes</i><i class="no">Not sure</i></div>
+      </div></div>
+      <div class="ph"><img src="images/laptop.jpg" style="object-position:70% 40%" alt="Woman celebrating at her laptop"><span class="credit">Shixart1985, CC BY 2.0</span>
+        <div class="cap">“I did it myself.”</div></div>
+      <div class="promise">
+        <div><span class="ic">🗣️</span>Voice-first, no menus</div>
+        <div><span class="ic">🔑</span>Singpass stays with you <span class="tag">[14]</span></div>
+        <div><span class="ic">🤝</span>Set up free by CCs <span class="tag">[9, 10]</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span>Three lenses, one design</h2>
+    <div class="lenses">
+      <div class="lens"><div class="ic">🔬</div><div><h3>STEM</h3><p>Speech + screen-reading AI for low vision <span class="tag">[9, 11]</span></p></div></div>
+      <div class="lens"><div class="ic">🏛️</div><div><h3>Governance &amp; Business</h3><p>Works with agencies, saves time and work <span class="tag">[14–18]</span></p></div></div>
+      <div class="lens"><div class="ic">❤️</div><div><h3>Society</h3><p>Dignity: do it yourself, no burden <span class="tag">[3, 5, 6]</span></p></div></div>
+    </div>
+    <div class="together">Society sets the goal · Governance sets the limits · STEM sets the interface</div>
+  </section>
+
+  <div class="duo">
+    <section>
+      <h2><span class="n">4</span>Human in the loop<span class="proposed">proposed</span></h2>
+      <div class="row"><div class="ic">❓</div><div><b>Unsure?</b> Hotline officer takes over <span class="tag">[8]</span></div></div>
+      <div class="row"><div class="ic">🔒</div><div><b>NRIC, bank, pay?</b> User only</div></div>
+      <div class="row"><div class="ic">⏸️</div><div><b>Hesitates?</b> Pause, nothing sent</div></div>
+      <div class="row"><div class="ic">🚨</div><div><b>Scam?</b> Halt, flag to agency</div></div>
+    </section>
+    <section>
+      <h2><span class="n">5</span>Concerns</h2>
+      <div class="row"><div class="ic">🛡️</div><div><b>Privacy:</b> on-device, deleted after use</div></div>
+      <div class="row"><div class="ic">🏥</div><div><b>Install:</b> free setup by partners <span class="tag">[9, 10]</span></div></div>
+      <div class="row"><div class="ic">⚠️</div><div><b>Wrong advice:</b> says “not sure”</div></div>
+      <div class="row"><div class="ic">💰</div><div><b>Cost:</b> to be estimated</div></div>
+    </section>
+  </div>
+
+  <div class="bottom">
+    <section>
+      <h2><span class="n">6</span>Why act?</h2>
+      <div class="act">
+        <div><span class="ic">🧓</span><b>Caregivers</b>Confidence</div>
+        <div><span class="ic">🏢</span><b>Agencies</b>Schemes reach users <span class="tag">[13, 14]</span></div>
+        <div><span class="ic">🏘️</span><b>Communities</b>Outreach tool</div>
+      </div>
+    </section>
+    <section class="pilot on-dark">
+      <h2><span class="n">7</span>Pilot</h2>
+      <p><b>1 CC · ~30 caregivers · 3 months</b></p>
+      <p>Track: forms abandoned · hotline calls · confidence · loneliness <span class="tag">[5, 8, 11, 13]</span></p>
+    </section>
+  </div>
+
+  <footer>
+    <b>[1]</b> Tan et al. (2025), SMU. <b>[3]</b> Tan et al. (2026), The Straits Times. <b>[5]</b> Yong et al. (2025), Gerontology 71(11). <b>[6]</b> Lim-Soh et al. (2024), J Gerontol B 80(1). <b>[8]</b> Liu et al. (2026), Front Public Health 14. <b>[9]</b> Visaria et al. (2023), Aging Health Res 3(1). <b>[10]</b> Gao et al. (2025), Health Soc Care Community. <b>[11]</b> Hassan (2020), JMIR Aging 3(2). <b>[13]</b> Seah et al. (2025), J Aging Soc Policy. <b>[14]</b> Ministry of Health (2023), Action Plan for Successful Ageing. <b>[15]</b> Zhan &amp; Huang (2023), China Popul Dev Stud 7. <b>[16]</b> Moriyama (2026), J Econ Ageing 34. <b>[17]</b> Azman et al. (2024), Aging Health Res 4(2). <b>[18]</b> Keita Fakeye et al. (2023), Value Health 26(5).
+    <div class="pc"><b>Photos (illustrative, not Singapore caregivers except the coffee shop):</b> Wikimedia Commons: “A woman and her grandson…” by AnikaMeyer (CC BY-SA 4.0); “Elderly woman standing next to a window…” and “Elderly woman with a laptop…” by Shixart1985 (CC BY 2.0); “CoffeeShopSG” by mailer_diablo (CC BY-SA 3.0).</div>
+  </footer>
+</div>
+</body>
+</html>

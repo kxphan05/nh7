@@ -89,13 +89,103 @@
   footer b { color: var(--brown); }
   footer .pc { margin-top: 1mm; }
   @media print { html, body { background: none; } }
+
+  .poster{gap:2.2mm;padding:7mm 11mm 4mm}
+  header{padding:2mm 8mm}
+  header h1{font-size:36pt}
+  header p{font-size:14pt}
+  .chips3{margin-left:auto;display:flex;flex-direction:column;gap:1.2mm;font-size:11.5pt;line-height:1.2;min-width:92mm}
+  .chips3 div{background:rgba(255,246,229,.12);border-radius:2mm;padding:1mm 3mm}
+  .chips3 b{color:var(--gold);text-transform:uppercase;font-size:9.5pt;letter-spacing:.05em;margin-right:2mm}
+  .top{display:grid;grid-template-columns:1fr 78mm;gap:5mm}
+  .evid{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+  .evid .ph{height:34mm}
+  .cap{font-size:13pt}.cap big{font-size:26pt}
+  .cap .tag{font-size:9pt}
+  .statement{display:block;margin-top:3mm}
+  .statement .s1{font-size:16pt;padding:3mm 5mm}
+  .today{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-top:3mm}
+  .today div{border-radius:3mm;padding:2.2mm 4mm;font-size:12.5pt;line-height:1.2}
+  .today .a{background:var(--card)}.today .b{background:var(--orange-light)}
+  .today b{display:block;font-size:9.5pt;text-transform:uppercase;letter-spacing:.06em;color:var(--teal)}
+  .today .b b{color:var(--orange)}
+  .mock{display:flex;flex-direction:column;gap:3mm}
+  .shot{background:var(--card);border-radius:3.5mm;overflow:hidden;border:.4mm solid #e2d3bd;position:relative}
+  .shot img{display:block;width:100%}
+  .shot .lbl{position:absolute;left:3mm;top:2.5mm;background:var(--orange);color:#fff;font-size:10.5pt;font-weight:700;padding:.6mm 3mm;border-radius:99px}
+  .shot img{height:92mm;object-fit:cover;object-position:0 40%}
+  .shot p{padding:1.5mm 3.5mm;font-size:11.5pt;line-height:1.2;background:var(--teal-light)}
+  .shot p b{color:var(--teal)}
+  .flow .step b{font-size:14pt}
+  .flow .step{padding:1.6mm 1mm;border-bottom-width:1.5mm}.flow .step b{margin-top:0}
+  .what{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:3mm;margin-top:2.5mm}
+  .what div{background:var(--card);border-radius:3.5mm;padding:2mm 4mm;font-size:12pt;line-height:1.18}
+  .what h3{font-size:11pt;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);margin-bottom:1mm}
+  .what .yes3 h3{color:var(--teal)} .what .no3{background:#FBE3DD}.what .no3 h3{color:#B3261E}
+  .what ul{list-style:none}.what li{margin-bottom:.6mm}
+  .what li::before{content:"✓ ";color:var(--teal);font-weight:700}.what .no3 li::before{content:"✕ ";color:#B3261E}
+  .lenses{gap:3.5mm}
+  .lens{grid-template-columns:1fr;padding:2mm 4mm}.lens .ic{display:none}
+  .lens p{font-size:13pt}
+  .meet{display:grid;grid-template-columns:repeat(3,1fr);gap:3.5mm;margin-top:3mm}
+  .meet div{background:var(--teal);color:#fff;border-radius:3.5mm;padding:1.8mm 4mm;font-size:12pt;line-height:1.2}
+  .meet b{display:block;color:var(--gold);font-size:11pt;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.8mm}
+  .meet-h{margin-top:2.5mm;font-size:11.5pt;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.05em}
+  table{width:100%;border-collapse:separate;border-spacing:0 1mm;font-size:11.5pt;line-height:1.12}
+  th{font-size:9.5pt;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;padding:0 2.5mm}
+  td{background:var(--card);padding:1mm 2.5mm;vertical-align:top}
+  td:first-child{border-radius:2.5mm 0 0 2.5mm;font-weight:700;color:var(--orange);width:27%}
+  td:last-child{border-radius:0 2.5mm 2.5mm 0}
+  td.h{color:var(--teal);font-weight:700}
+  .duo{grid-template-columns:1.12fr 1fr;gap:5mm}
+  .cc td:first-child{color:var(--teal);width:21%}
+  .who{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+  .who div{background:var(--card);border-radius:3.5mm;padding:2mm 3.5mm;font-size:12pt;line-height:1.2}
+  .who b{display:block;color:var(--teal);font-size:13pt}
+  .who i{display:block;font-style:normal;color:var(--orange);font-weight:700;margin-top:.8mm}
+  .pilot p{font-size:12.5pt}
+  h2{font-size:16pt;margin-bottom:1.6mm}
+  footer{font-size:7pt;padding-top:1mm}.poster{padding-bottom:2.5mm}
+  .rcol{display:flex;flex-direction:column;gap:2mm}
+  .band{display:flex;align-items:center;gap:5mm;padding:2mm 5mm}.band h2{margin:0;white-space:nowrap}.band p{font-size:12.5pt}
+  .band p b{color:var(--gold)}
+  .mock h2{font-size:15pt}
+  .shot img{height:112mm;object-position:0 0}
+  .lens p{font-size:12pt}.lens h3{margin-bottom:.3mm;font-size:11.5pt}
+  .lens{padding:1.5mm 4mm}
+  .cc td:first-child{width:22%}
+  .evid .ph{height:30mm}
+  .statement .s1{font-size:15pt;padding:2.2mm 5mm}
+  .today{margin-top:2.2mm}
+  .what li{margin-bottom:0}
+  .stmt2{display:grid;grid-template-columns:1.1fr 1fr;gap:4mm;margin-top:3mm}
+  .stmt2 .statement{margin:0}.stmt2 .s1{height:100%}
+  .stmt2 .today{margin:0;grid-template-columns:1fr 1fr}
+  .evid .ph{height:29mm}
+  .solgrid{display:grid;grid-template-columns:70mm 1fr;gap:4mm;align-items:stretch}
+  .solgrid .mock{position:relative}
+  .shot{height:100%;display:flex;flex-direction:column}
+  .shot img{flex:1;min-height:0;height:auto;object-fit:cover;object-position:0 0}
+  .proto{position:absolute;left:2.5mm;top:2.5mm;z-index:2;background:var(--orange);color:#fff;font-size:10.5pt;font-weight:700;padding:.6mm 3mm;border-radius:99px}
+  .solr{display:flex;flex-direction:column;gap:2.5mm}
+  .solr .what{grid-template-columns:1fr 1fr;margin-top:0}
+  .solr .what>div:first-child{grid-column:1/-1}
+  .flow .step b{font-size:13pt}
+  .stmt2 .s1{font-size:14.5pt}
+  .meet-h{margin-top:1.5mm}.meet{margin-top:2mm}
+  .cc td:first-child{width:24%}
+  .cc td{padding:.8mm 2.5mm}
+  .what h3{margin-bottom:.4mm}
+  .solgrid .mock{min-height:0}
+  .solgrid .shot{position:absolute;inset:0;height:auto}
+  .solgrid .shot img{object-position:0 100%}
 </style>
 </head>
 <body>
 <div class="poster">
 
   <header>
-    <svg width="84" height="100" viewBox="0 0 84 100" aria-label="Kopi the coffee cup mascot">
+    <svg width="76" height="90" viewBox="0 0 84 100" aria-label="Kopi the coffee cup mascot">
       <path d="M26 10 q-6 -8 0 -12 M42 10 q-6 -8 0 -12 M58 10 q-6 -8 0 -12" stroke="#F6B26B" stroke-width="3" fill="none" stroke-linecap="round" transform="translate(0,6)"/>
       <path d="M8 24 h58 v32 a29 29 0 0 1 -58 0z" fill="#FFF6E5"/>
       <path d="M66 32 h6 a10 10 0 0 1 0 22 h-8" fill="none" stroke="#FFF6E5" stroke-width="6"/>
@@ -103,98 +193,111 @@
       <circle cx="26" cy="52" r="3.5" fill="#4A2C1A"/><circle cx="48" cy="52" r="3.5" fill="#4A2C1A"/>
       <path d="M26 63 q11 10 22 0" stroke="#4A2C1A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
       <ellipse cx="18" cy="60" rx="4" ry="2.6" fill="#F6B26B"/><ellipse cx="56" cy="60" rx="4" ry="2.6" fill="#F6B26B"/>
-      <ellipse cx="37" cy="92" rx="34" ry="5" fill="#FFF6E5" opacity=".5"/>
     </svg>
     <div>
       <h1>Kopi<span>Kaki</span></h1>
-      <p>A voice-first AI friend that helps older caregivers finish online support forms.</p>
+      <p>A voice-first AI friend that helps older caregivers with failing eyesight finish online support forms.</p>
+    </div>
+    <div class="chips3">
+      <div><b>Who</b>Older caregivers with declining vision</div>
+      <div><b>Task</b>Applying for a caregiver support grant online</div>
+      <div><b>AI's job</b>Read, explain, fill in. Never submit.</div>
     </div>
   </header>
 
   <section class="problem">
     <h2><span class="n">1</span>The problem</h2>
-    <div class="photos">
+    <div class="evid">
       <div class="ph"><img src="images/grandson.jpg" style="object-position:30% 40%" alt="Grandmother holding a child"><span class="credit">AnikaMeyer, CC BY-SA 4.0</span>
         <div class="cap"><big>62</big>median age of daily caregivers <span class="tag">[1]</span></div></div>
       <div class="ph"><img src="images/phone.jpg" style="object-position:50% 35%" alt="Woman looking at her phone"><span class="credit">Shixart1985, CC BY 2.0</span>
         <div class="cap">Support is online, but hard to see and find <span class="tag">[9, 11, 13]</span></div></div>
       <div class="ph"><img src="images/kopitiam.jpg" style="object-position:20% 50%" alt="Singapore coffee shop"><span class="credit">mailer_diablo, CC BY-SA 3.0</span>
-        <div class="cap">They won't ask for help <span class="tag">[3, 5, 6]</span></div></div>
+        <div class="cap">They rarely ask for help <span class="tag">[3, 5, 6]</span></div></div>
     </div>
-    <div class="statement on-dark">
-      <div class="s1">Older caregivers with declining vision give up on online support forms.</div>
-      <div class="s2">No caregiving-specific digital help exists <span class="tag">&nbsp;[14]</span></div>
-    </div>
+    <div class="stmt2"><div class="statement on-dark"><div class="s1">Older caregivers with declining vision give up on online support forms, so the help meant for them never arrives.</div></div>
+    <div class="today">
+      <div class="a"><b>What exists today</b>General digital-skills programmes for seniors, plus agency hotlines <span class="tag">[14]</span></div>
+      <div class="b"><b>The gap</b>No caregiving-specific help at the moment someone is stuck on the form <span class="tag">[14]</span></div>
+    </div></div>
   </section>
 
   <section>
     <h2><span class="n">2</span>The solution: Kopi reads, explains, fills in. You decide.</h2>
+    <div class="solgrid">
+    <section class="mock">
+    
+    <div class="shot"><img src="images/mockup_phone.png" alt="Kopi guiding a caregiver through the form">
+      <p><b>Working prototype.</b> Listens first (ELIZA-style), then guides the form <b>one question at a time</b>, lights up the matching box and reads every entry back.</p></div>
+  </section>
+    <div class="solr">
     <div class="flow">
-      <div class="step"><div class="ic">🙋</div><b>Offers help</b><span class="tag">[3, 6]</span></div>
-      <div class="step"><div class="ic">🔊</div><b>Reads aloud</b><span class="tag">[9]</span></div>
-      <div class="step"><div class="ic">💬</div><b>Explains simply</b><span class="tag">[11, 13]</span></div>
-      <div class="step"><div class="ic">✍️</div><b>Fills in, reads back</b><span class="tag">[11]</span></div>
-      <div class="step key"><div class="ic">✅</div><b>You say "yes"</b><span class="tag">[8]</span></div>
+      <div class="step"><b>Offers help</b><span class="tag">[3, 6]</span></div>
+      <div class="step"><b>Reads aloud</b><span class="tag">[9]</span></div>
+      <div class="step"><b>Explains simply</b><span class="tag">[11, 13]</span></div>
+      <div class="step"><b>Fills in, reads back</b><span class="tag">[11]</span></div>
+      <div class="step key"><b>You press Submit</b><span class="tag">[8]</span></div>
     </div>
-    <div class="tiles">
-      <div class="phone"><div class="screen">
-        <div class="bar" style="width:70%"></div><div class="hl"></div>
-        <div class="bubble">“Shall I help fill in this box?”</div>
-        <svg class="cup" width="28" height="33" viewBox="0 0 84 100"><path d="M8 24 h58 v32 a29 29 0 0 1 -58 0z" fill="#4A2C1A"/><rect x="4" y="22" width="66" height="7" rx="3" fill="#E8742A"/><circle cx="26" cy="52" r="4" fill="#FFF6E5"/><circle cx="48" cy="52" r="4" fill="#FFF6E5"/></svg>
-        <div class="btns"><i class="yes">Yes</i><i class="no">Not sure</i></div>
-      </div></div>
-      <div class="ph"><img src="images/laptop.jpg" style="object-position:70% 40%" alt="Woman celebrating at her laptop"><span class="credit">Shixart1985, CC BY 2.0</span>
-        <div class="cap">“I did it myself.”</div></div>
-      <div class="promise">
-        <div><span class="ic">🗣️</span>Voice-first, no menus</div>
-        <div><span class="ic">🔑</span>Singpass stays with you <span class="tag">[14]</span></div>
-        <div><span class="ic">🤝</span>Set up free by CCs <span class="tag">[9, 10]</span></div>
-      </div>
+    <div class="what">
+      <div><h3>What it is &amp; who it is for</h3>A chat companion beside an agency form, for older caregivers whose eyesight makes dense forms hard to read. Offered by community partners, never forced <span class="tag">[3, 6, 9, 10]</span>. Speaks English, Mandarin, Malay and Tamil.</div>
+      <div class="yes3"><h3>What the AI does</h3><ul><li>Reads and explains each section in plain words</li><li>Listens to typed or spoken answers</li><li>Fills the non-sensitive boxes, reads each back</li><li>Spots scam wording</li></ul></div>
+      <div class="no3"><h3>What the AI never does</h3><ul><li>Types NRIC, income or bank details</li><li>Presses Submit for you</li><li>Predicts how much you will get</li><li>Guesses when unsure: it hands over</li></ul></div>
     </div>
+  </div></div>
   </section>
 
   <section>
-    <h2><span class="n">3</span>Three lenses, one design</h2>
+    <h2><span class="n">3</span>Interdisciplinary framing: three lenses, one design</h2>
     <div class="lenses">
-      <div class="lens"><div class="ic">🔬</div><div><h3>STEM</h3><p>Speech + screen-reading AI for low vision <span class="tag">[9, 11]</span></p></div></div>
-      <div class="lens"><div class="ic">🏛️</div><div><h3>Governance &amp; Business</h3><p>Works with agencies, saves time and work <span class="tag">[14–18]</span></p></div></div>
-      <div class="lens"><div class="ic">❤️</div><div><h3>Society</h3><p>Dignity: do it yourself, no burden <span class="tag">[3, 5, 6]</span></p></div></div>
+      <div class="lens"><div class="ic">&#128300;</div><div><h3>STEM</h3><p>Speech and screen-reading AI for low vision <span class="tag">[9, 11]</span></p></div></div>
+      <div class="lens"><div class="ic">&#127963;&#65039;</div><div><h3>Business &amp; Governance</h3><p>Works inside agency rules; saves staff time <span class="tag">[14-18]</span></p></div></div>
+      <div class="lens"><div class="ic">&#10084;&#65039;</div><div><h3>Social sciences</h3><p>Dignity: caregiving is seen as personal duty, help is rarely asked for <span class="tag">[3, 5, 6]</span></p></div></div>
     </div>
-    <div class="together">Society sets the goal · Governance sets the limits · STEM sets the interface</div>
+    <div class="meet-h">Where the lenses meet: each design rule comes from two of them</div>
+    <div class="meet">
+      <div><b>Society &times; Governance</b>Dignity + consent: the user types private details and presses Submit. Kopi never acts alone.</div>
+      <div><b>STEM &times; Society</b>Low vision + not wanting to ask: voice-first, one lit-up box at a time, offered but never forced.</div>
+      <div><b>Governance &times; STEM</b>Agency data rules: Kopi sees only the form, keeps nothing, and Singpass stays with the user <span class="tag" style="color:var(--gold)">[14]</span>.</div>
+    </div>
   </section>
 
   <div class="duo">
     <section>
-      <h2><span class="n">4</span>Human in the loop<span class="proposed">proposed</span></h2>
-      <div class="row"><div class="ic">❓</div><div><b>Unsure?</b> Hotline officer takes over <span class="tag">[8]</span></div></div>
-      <div class="row"><div class="ic">🔒</div><div><b>NRIC, bank, pay?</b> User only</div></div>
-      <div class="row"><div class="ic">⏸️</div><div><b>Hesitates?</b> Pause, nothing sent</div></div>
-      <div class="row"><div class="ic">🚨</div><div><b>Scam?</b> Halt, flag to agency</div></div>
+      <h2><span class="n">4</span>Human-in-the-loop protocol<span class="proposed">proposed</span></h2>
+      <table>
+        <tr><th>When</th><th>Kopi stops and</th><th>The human</th></tr>
+        <tr><td>Not understood twice, or asks for a person</td><td>Says "I'm not sure" and hands over <span class="tag">[8]</span></td><td class="h">Hotline officer takes over</td></tr>
+        <tr><td>NRIC, income, bank, payment</td><td>Masks it, tells the user to type it in the form</td><td class="h">The user, alone</td></tr>
+        <tr><td>25 seconds of silence</td><td>Pauses; nothing is sent</td><td class="h">The user taps "Carry on"</td></tr>
+        <tr><td>Scam wording (fee, OTP)</td><td>Halts and warns; flags to agency</td><td class="h">Agency reviews the flag</td></tr>
+        <tr><td>Self-harm or abuse words</td><td>Stops chatting, gives hotline numbers</td><td class="h">Trained responder</td></tr>
+      </table>
+    </section>
+    <div class="rcol">
+    <section>
+      <h2><span class="n">5</span>Stakeholder concerns</h2>
+      <table class="cc">
+        <tr><td>Feasibility</td><td>No agency system changes: Kopi sits beside the public form. Prototype built; the pilot tests it.</td></tr>
+        <tr><td>Cost</td><td>Not yet costed, and we say so. The pilot records staff time and cost per completed form.</td></tr>
+        <tr><td>Ethics &amp; privacy</td><td>Opt-in, on-device, deleted after use; the user always has the final say. We test across languages and ages for bias.</td></tr>
+        <tr><td>Implementation</td><td>Free setup by hospitals, CCs and volunteers <span class="tag">[9, 10]</span>. If Kopi is wrong, it says "not sure".</td></tr>
+      </table>
     </section>
     <section>
-      <h2><span class="n">5</span>Concerns</h2>
-      <div class="row"><div class="ic">🛡️</div><div><b>Privacy:</b> on-device, deleted after use</div></div>
-      <div class="row"><div class="ic">🏥</div><div><b>Install:</b> free setup by partners <span class="tag">[9, 10]</span></div></div>
-      <div class="row"><div class="ic">⚠️</div><div><b>Wrong advice:</b> says “not sure”</div></div>
-      <div class="row"><div class="ic">💰</div><div><b>Cost:</b> to be estimated</div></div>
+      <h2><span class="n">6</span>Why someone should act</h2>
+      <table class="cc">
+        <tr><td>Caregivers</td><td>Finish it themselves, with dignity. <b>Ask:</b> try it.</td></tr>
+        <tr><td>Agencies</td><td>More schemes reach the people they are for <span class="tag">[13, 14]</span>. <b>Ask:</b> let Kopi sit beside your form.</td></tr>
+        <tr><td>CCs &amp; hospitals</td><td>A tool for outreach they already do <span class="tag">[9, 10]</span>. <b>Ask:</b> host the set-up.</td></tr>
+      </table>
     </section>
+    </div>
   </div>
 
-  <div class="bottom">
-    <section>
-      <h2><span class="n">6</span>Why act?</h2>
-      <div class="act">
-        <div><span class="ic">🧓</span><b>Caregivers</b>Confidence</div>
-        <div><span class="ic">🏢</span><b>Agencies</b>Schemes reach users <span class="tag">[13, 14]</span></div>
-        <div><span class="ic">🏘️</span><b>Communities</b>Outreach tool</div>
-      </div>
-    </section>
-    <section class="pilot on-dark">
-      <h2><span class="n">7</span>Pilot</h2>
-      <p><b>1 CC · ~30 caregivers · 3 months</b></p>
-      <p>Track: forms abandoned · hotline calls · confidence · loneliness <span class="tag">[5, 8, 11, 13]</span></p>
-    </section>
-  </div>
+  <section class="pilot on-dark band">
+    <h2><span class="n">7</span>Pilot</h2>
+    <p><b>1 community club &middot; ~30 caregivers &middot; 3 months.</b> Measure: forms abandoned &middot; hotline calls &middot; confidence &middot; loneliness &middot; cost per form <span class="tag">[5, 8, 11, 13]</span></p>
+  </section>
 
   <footer>
     <b>[1]</b> Tan et al. (2025), SMU. <b>[3]</b> Tan et al. (2026), The Straits Times. <b>[5]</b> Yong et al. (2025), Gerontology 71(11). <b>[6]</b> Lim-Soh et al. (2024), J Gerontol B 80(1). <b>[8]</b> Liu et al. (2026), Front Public Health 14. <b>[9]</b> Visaria et al. (2023), Aging Health Res 3(1). <b>[10]</b> Gao et al. (2025), Health Soc Care Community. <b>[11]</b> Hassan (2020), JMIR Aging 3(2). <b>[13]</b> Seah et al. (2025), J Aging Soc Policy. <b>[14]</b> Ministry of Health (2023), Action Plan for Successful Ageing. <b>[15]</b> Zhan &amp; Huang (2023), China Popul Dev Stud 7. <b>[16]</b> Moriyama (2026), J Econ Ageing 34. <b>[17]</b> Azman et al. (2024), Aging Health Res 4(2). <b>[18]</b> Keita Fakeye et al. (2023), Value Health 26(5).
