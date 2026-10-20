@@ -20,7 +20,7 @@ AUDIO = ROOT / "audio"
 
 # Conversation-style voices sound least like a reading machine.
 VOICES = {
-    "en": "en-US-AvaMultilingualNeural",
+    "en": "en-SG-LunaNeural",
     "zh": "zh-CN-XiaoxiaoNeural",
     "ms": "ms-MY-YasminNeural",
     "ta": "ta-SG-VenbaNeural",
