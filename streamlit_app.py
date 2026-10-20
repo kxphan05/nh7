@@ -5,7 +5,6 @@ The mockup is plain HTML/JS (mockup/). Streamlit serves it as static files
 Run locally:  streamlit run streamlit_app.py
 """
 import streamlit as st
-import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Kopi Kaki", page_icon="☕", layout="wide", initial_sidebar_state="collapsed")
 
@@ -14,7 +13,7 @@ st.markdown(
     """<style>
     #MainMenu, header, footer, [data-testid="stToolbar"], [data-testid="stDecoration"]{display:none!important}
     .block-container{padding:0!important;max-width:100%!important}
-    iframe{border:0}
+    iframe{border:0;width:100%}
     </style>""",
     unsafe_allow_html=True,
 )
@@ -24,9 +23,4 @@ page = st.query_params.get("page", "index.html")
 if page not in ("index.html", "presenter.html", "eliza.html"):
     page = "index.html"
 
-components.html(
-    f'<iframe src="/app/static/mockup/{page}" allow="microphone; autoplay" '
-    'style="width:100%;height:96vh;border:0"></iframe>',
-    height=900,
-    scrolling=False,
-)
+st.iframe(f"/app/static/mockup/{page}", height=820)
