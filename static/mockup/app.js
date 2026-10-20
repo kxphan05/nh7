@@ -3,7 +3,7 @@ const $=s=>document.querySelector(s);
 const Q=new URLSearchParams(window.KOPI_QS??location.search);
 const INLINE=window.KOPI_QS!==undefined; // inside Streamlit: language is picked by Streamlit's own bar, restart = reload
 const reload=l=>INLINE?location.reload():(location.href='?l='+l);
-if(INLINE)document.getElementById('lang').style.display='none';
+if(INLINE){document.getElementById('lang').style.display='none';document.getElementById('toSite').style.display='none'}
 const L=STR[Q.get('l')]?Q.get('l'):'en';
 const t=(k,v)=>(STR[L][k]||STR.en[k]).replace('{v}',v??'');
 const UI={

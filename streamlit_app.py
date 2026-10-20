@@ -28,7 +28,7 @@ st.markdown(
 
 
 @st.cache_data(show_spinner=False)
-def build(page: str, lang: str) -> str:
+def build(page: str, lang: str, stamp: float) -> str:  # stamp: re-build when any mockup file changes
     html = (ROOT / page).read_text(encoding="utf-8")
 
     def css(m):
@@ -54,13 +54,25 @@ def build(page: str, lang: str) -> str:
     return html.replace("<head>", f'<head><script>window.KOPI_QS="?l={lang}";</script>', 1)
 
 
-page = "eliza.html" if st.query_params.get("page") == "eliza.html" else "index.html"
+VIEWS = {"Chat with Kopi": "index.html", "Kopi on a website": "overlay.html"}
+page = st.query_params.get("page", "index.html")
+if page not in ("index.html", "overlay.html", "eliza.html"):
+    page = "index.html"
 lang = st.query_params.get("l", "en")
 if lang not in LANGS:
     lang = "en"
 
-picked = st.segmented_control("Language", list(LANGS), default=lang, format_func=LANGS.get, label_visibility="collapsed")
-if picked and picked != lang:
-    st.query_params["l"] = lang = picked
+left, right = st.columns([1, 1])
+with left:
+    view = st.segmented_control("View", list(VIEWS), default=next((k for k, v in VIEWS.items() if v == page), None),
+                                label_visibility="collapsed")
+    if view and VIEWS[view] != page:
+        st.query_params["page"] = page = VIEWS[view]
+with right:
+    if page == "index.html":  # the website demo is English only
+        picked = st.segmented_control("Language", list(LANGS), default=lang, format_func=LANGS.get, label_visibility="collapsed")
+        if picked and picked != lang:
+            st.query_params["l"] = lang = picked
 
-st.iframe(build(page, lang), height=700)
+stamp = max(f.stat().st_mtime for f in ROOT.glob('*') if f.is_file())
+st.iframe(build(page, lang, stamp), height=700)
