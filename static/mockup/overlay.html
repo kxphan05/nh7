@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kopi on a website</title>
 <script src="i18n.js?v=2"></script><script src="xs.js?v=1"></script><script src="audio/manifest.js?v=4"></script>
-<script src="eliza.js?v=2"></script><script src="overlay.js?v=1"></script>
+<script src="eliza.js?v=2"></script><script src="blocks.js?v=1"></script><script src="overlay.js?v=2"></script>
 <style>
 :root{--ink:#1f1d1a;--mute:#6b665e;--line:#e6e1d6;--acc:#b5532a;--acc-d:#8f3f1e;--accbg:#f6e9e1;--ok:#2d7a46;--warn:#b3261e;--blue:#2b5aa7;--cream:#faf9f5}
 *{box-sizing:border-box}
@@ -17,12 +17,18 @@ button{font:inherit;cursor:pointer}
 .page{max-width:820px;margin:0 auto;padding:22px 20px 160px}
 .crumb{font-size:13px;color:var(--mute)}
 .page h1{font-size:30px;margin:6px 0 4px;color:#14305c}
-.blk{border:2px solid transparent;border-radius:10px;padding:8px 12px;margin:6px -12px;transition:.2s;position:relative}
-.blk h2{font-size:19px;margin:0 0 4px;color:#14305c}
-.blk p{margin:.2em 0}
+.snap{background:#eef3fc;border:1px solid #c9d6ee;border-radius:10px;padding:10px 14px;font-size:14px;margin-bottom:14px}
+.page h2{font-size:23px;margin:26px 0 6px;color:#14305c;border-bottom:2px solid #dbe3f0;padding-bottom:4px}
+.page h3{font-size:17px;margin:18px 0 4px;color:#14305c}
+.page p,.page li{margin:.35em 0}.page ul,.page ol{padding-left:22px}
+.page a{color:#1a56b5}
+.blk,tr[data-b]{border-radius:10px;transition:.2s}
+.blk{border:2px solid transparent;padding:6px 12px;margin:4px -12px}
+tr.reading td,tr.picked td{background:#fff3b0}tr.picked td{background:#e8f1ff}
 .blk.reading{background:#fff3b0;border-color:#e0b800}
-body.explain .blk{cursor:pointer;border-color:#c9d6ee;border-style:dashed}
-body.explain .blk:hover{background:#eef3fc;border-color:var(--blue)}
+body.explain [data-b]{cursor:pointer}
+body.explain .blk{border-color:#c9d6ee;border-style:dashed}
+body.explain .blk:hover,body.explain tr[data-b]:hover td{background:#eef3fc}
 .blk.picked{background:#e8f1ff;border:2px solid var(--blue)}
 table{border-collapse:collapse;width:100%;margin:4px 0}
 th,td{border:1px solid #cfd6e2;padding:8px 12px;text-align:left}
@@ -86,34 +92,110 @@ th{background:#eef2f8}
 <div class="demo">Demo of Kopi as a helper on a real-looking government page.
   <button id="dScam">🚨 Simulate scam pop-up</button><button onclick="location.reload()">⟲ Restart</button>
   <span style="margin-left:auto"><a href="index.html" id="toChat">Open the full Kopi chat</a></span></div>
-<div class="gov"><b>Sample Agency (mock-up)</b><span>Financial Assistance</span></div>
+<div class="gov"><b>Snapshot of www.aic.sg</b><span>Financial Assistance › Home Caregiving Grant</span></div>
 <main class="page">
-  <div class="crumb">Home › Financial Assistance › Home Caregiving Grant</div>
-  <div class="blk" data-b="intro"><h1>Home Caregiving Grant (HCG)</h1>
-    <p>Monthly cash payouts to help families caring for persons with moderate to severe disabilities.</p></div>
-  <div class="blk" data-b="who"><h2>Who can get it</h2>
-    <p>The care recipient must be a Singapore Citizen, or a PR with a parent, child or spouse who is a living Singapore Citizen. They must live in Singapore, and not in a residential long-term care institution.</p></div>
-  <div class="blk" data-b="needs"><h2>Care needs</h2>
-    <p>The care recipient must permanently require assistance with at least 3 of the 6 activities of daily living, confirmed by a disability assessment.</p></div>
-  <div class="blk" data-b="income"><h2>Means test</h2>
-    <p>Household monthly income per person of $4,800 or less.</p></div>
-  <div class="blk" data-b="tiers"><h2>Payout</h2>
-    <table><tr><th>Household monthly income per person</th><th>Monthly payout</th></tr>
-      <tr><td>$0 – $1,500</td><td>$600</td></tr><tr><td>$1,501 – $3,600</td><td>$400</td></tr><tr><td>$3,601 – $4,800</td><td>$200</td></tr></table></div>
-  <div class="blk" data-b="apply"><h2>How to apply</h2>
-    <p><b>Online (recommended):</b> through AIC's eFASS with Singpass. Shorter approval wait.<br><b>Hard copy:</b> email apply@aic.sg or visit an AIC Link. Takes longer to process.</p></div>
-  <div class="blk" data-b="time"><h2>Processing</h2><p>Processing may take up to four weeks. You will be notified by mail.</p></div>
-  <div class="blk warnbox" data-b="scam"><h2>⚠️ Scam warning</h2>
-    <p>AIC staff will never ask you to transfer money or disclose bank log-in details over a phone call. If in doubt, call the ScamShield Helpline at 1799.</p></div>
+  <div class="snap">This is a saved copy of the real page at <a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant">aic.sg/Financial-Assistance/Home-Caregiving-Grant</a>, captured 20 Oct 2026. The wording is unchanged; menus and scripts were removed. Rules can change, so check the live page.</div>
+<!--REALPAGE-->
+<div class="blk" data-b="alert"><p>We are aware of incorrect information about AIC’s financial assistance schemes being circulated. Always verify details on our website first. If in doubt, contact <a href="https://www.aic.sg/contact-us" rel="noopener" target="_blank">AIC</a> directly.</p></div>
+<h1>Home Caregiving Grant (HCG)</h1>
+<p>Monthly cash payouts to help families caring for persons with moderate to severe disabilities.</p>
+<div class="blk" data-b="highlights"><p>Highlights</p><p>
+ Up to $600 a month
+</p><p>
+ Can be used to pay for care needs
+</p><p>Key criteria</p><p> Singapore Citizen or PR</p><p> Monthly household income per person is $4,800 or less</p><p> Must have moderate to severe disability</p><p>Full details below.</p></div>
+<h2>Introduction</h2>
+<div class="blk" data-b="intro"><p>The Home Caregiving Grant (HCG) provides families with a monthly cash payout to help them manage the cost of caring for seniors or persons with disabilities at home.</p><p>The grant can be used for care needs, such as hiring a helper, paying for home care services, or buying healthcare items. </p></div>
+<h2>How to qualify</h2>
+<p>There are a few criteria your loved one will need to meet to qualify for HCG.</p>
+<table><thead><tr><th>Criteria</th><th>Description</th></tr></thead><tbody><tr data-b="q_nat"><td>Care recipient's nationality</td><td><p>He/ she must be a:</p><ul><li>Singapore Citizen<br/>OR</li><li>PR (with a parent, child or spouse who is a living Singapore Citizen).</li></ul></td></tr><tr data-b="q_res"><td>Care recipient's residence</td><td><p>He/ she must:</p><ul><li>Be living in Singapore.</li><li>Not be <a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant#q5a" rel="noopener" target="_blank">living in a residential long-term care institution</a>.</li></ul></td></tr><tr data-b="q_inc"><td>Care recipient's household income</td><td><p>He/ she must meet the means-test criteria for HCG:</p><ul><li><a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant#q6" rel="noopener" target="_blank">Household monthly income per person</a> must be $4,800 or less.<ul><li><a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant#q7" rel="noopener" target="_blank">Find out how to update your household details for means-testing</a></li></ul></li></ul><p>OR</p><ul><li><a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant#q6" rel="noopener" target="_blank">Annual value (AV)</a> of property under $21,000 if there is no household income.</li></ul></td></tr><tr data-b="q_need"><td>Care recipient's needs</td><td><p>He/ she must:</p><ul><li><p>Permanently requires some assistance with at least three of the six activities of daily living. The six activities are:</p></li><li>Undergo disability assessment.<ul><li>This must be done by a <a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant#q1" rel="noopener" target="_blank">General Practitioner (GP) or an approved healthcare professional</a> using a <a href="https://edge.sitecorecloud.io/agencyforinb6cc-agencyforin73f5-production08ac-d178/media/agency-for-integrated-care/Files/Financial-Assistance/Functional-Assessment-Report.pdf" rel="noopener" target="_blank">Functional Assessment Report (FAR)</a>.</li><li><a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant#q1" rel="noopener" target="_blank">Find out how to book an appointment to do the FAR.</a></li><li>You will need to pay the assessment fee, if any. The cost may vary so do check with your healthcare professional.<br/><br/>For care recipients with Autism Spectrum Disorder (ASD) or Intellectual Disability (ID)</li><li>His/ her needs will be determined by a <a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant#q2" rel="noopener" target="_blank">Ministry of Social and Family Development (MSF)-approved assessor using a Client Assessment Form (CAF)</a>. <br/><br/>If he/ she lacks mental capacity</li><li><a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant#q3" rel="noopener" target="_blank">Find out more about applying on behalf of someone who lacks capacity</a>.<br/><br/>For those currently applying for severe disability schemes</li><li>You do not need to complete the FAR if you are currently applying for:<ul><li><a href="https://www.aic.sg/Financial-Assistance/Interim-Disability-Assistance-Programme-for-the-Elderly" rel="noopener" target="_blank">IDAPE</a></li><li><a href="https://www.aic.sg/Financial-Assistance/ElderFund" rel="noopener" target="_blank">ElderFund</a></li><li><a href="https://www.aic.sg/Financial-Assistance/ElderShield" rel="noopener" target="_blank">ElderShield</a></li><li><a href="https://www.aic.sg/Financial-Assistance/CareShield-Life" rel="noopener" target="_blank">CareShield Life</a></li><li><a href="https://www.aic.sg/Financial-Assistance/MediSave-Care" rel="noopener" target="_blank">MediSave Care</a><br/><br/>The severe disability assessment done by the <a href="https://www.aic.sg/Financial-Assistance/Severe-Disability-Assessment" rel="noopener" target="_blank">MOH-accredited severe disability assessor</a> is enough to assess your level of disability for HCG. This way, you do not need to pay 2 separate assessment fees.</li></ul></li></ul></li></ul></td></tr></tbody></table>
+<h2>How the scheme works</h2>
+<div class="blk" data-b="tiers"><p>The grant amount depends on your monthly household income per person as well as the number of properties owned. </p><table><thead><tr><th>Monthly household income per person</th><th>Payout</th></tr></thead><tbody><tr><td>$0 – $1,500<br/>(or AV ≤ $21,000 for households without income)</td><td>$600</td></tr><tr><td>$1,501 – $3,600</td><td>$400</td></tr><tr><td>$3,601 - $4,800</td><td>$200</td></tr></tbody></table><p>* <em>If you own multiple properties, you will receive the lower tier of $200 per month.</em><br/> </p></div>
+<div class="blk" data-b="time"><p>After you submit your application, we may take up to four weeks to process it.  You will be informed about the outcome in writing via mail.</p></div>
+<div class="blk" data-b="paid"><p>Once approved, payouts will be made to the nominated bank account in the following month. This may include payouts from the month the application was submitted. The payouts will be reflected as “HCG” in your bank statement.</p></div>
+<p>In the event of any conflict, inconsistency or domestic dispute regarding the nominated bank account, the payouts may be suspended or ceased.</p>
+<p>If you have submitted a new application to apply for new schemes or update your existing schemes with AIC, we may update your nominated bank account to the latest bank account details provided in your submission.</p>
+<h2>How to apply</h2>
+<div class="blk" data-b="apply"><p>There are several ways you can apply for HCG.</p><ol><li><p>Apply online using Singpass (recommended)</p><p>This is done via <a href="https://efinance.aic.sg/" rel="noopener" target="_blank">AIC’s e-Services for Financing Schemes (eFASS)</a>. We recommend this method as the approval waiting time is shorter.<br/> </p><p>Read the <a href="https://edge.sitecorecloud.io/agencyforinb6cc-agencyforin73f5-production08ac-d178/media/agency-for-integrated-care/Files/Financial-Assistance/Schemes-Terms-Conditions.pdf" rel="noopener" target="_blank">terms and conditions</a> before you start.<br/> </p><p> </p><p> </p><p>Please read <a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant#q3" rel="noopener" target="_blank">here</a> if you are applying for the grant on behalf of someone who lacks mental capacity.</p><p> </p></li><li><p>Apply via hard copy</p><p>Email <a href="mailto:apply@aic.sg" rel="noopener" target="_blank">apply@aic.sg</a> to obtain a copy of the application form or visit any <a href="https://www.aic.sg/Contact-Us" rel="noopener" target="_blank">AIC Link</a>.</p><p> </p><p>We seek your understanding that hardcopy applications take a longer time to process. </p></li></ol></div>
+<h2>Documents needed</h2>
+<div class="blk" data-b="docs"><p>The full details of what is needed are available on <a href="https://efinance.aic.sg/" rel="noopener" target="_blank">eFASS</a>. </p><p><a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant#q3" rel="noopener" target="_blank">If you are submitting on behalf of someone who lacks mental capacity, you will need to prepare additional documents.</a> We will inform you if other documents are needed. </p></div>
+<h2><h2>FAQs</h2></h2>
+<h3><p>1. Tell me more about the Functional Assessment Report (FAR).</p></h3>
+<p>The <a href="https://edge.sitecorecloud.io/agencyforinb6cc-agencyforin73f5-production08ac-d178/media/agency-for-integrated-care/Files/Financial-Assistance/Functional-Assessment-Report.pdf" rel="noopener" target="_blank">FAR</a> assesses a person’s need for assistance with the activities of daily living. </p>
+<p>To complete it, you will need to contact the clinic first to confirm if they can carry out the FAR before booking your appointment. You are required to bring along a physical copy of the FAR and any other relevant supporting documents (eg medical records).<br/> <br/>Approved FAR assessors include:</p>
+<ul><li>Doctors who are under full or conditional registration with the Singapore Medical Council and possess the necessary licence(s). This includes the doctor or the doctor’s organisation holding the relevant and valid Healthcare Services Act (HCSA) licence(s).</li><li>Registered nurses who are under full or conditional registration with the Singapore Nursing Board.</li><li>Physiotherapists who are under full, conditional or restricted registration with the Allied Health Professions Council (“AHPC”).</li><li>Occupational therapists who are under full, conditional or restricted (restricted scope classification - “Physical dysfunction / Adults and older adults” only) registration with AHPC.</li></ul>
+<p>If the person who needs assessment is below the age of 8, he/ she must be assessed by a paediatrician.</p>
+<h3><p>2. Tell me more about the assessment using a Client Assessment Form (CAF).</p></h3>
+<p>The CAF is an assessment tool used to determine the level of support needs for persons living with Intellectual Disability (ID) or Autism Spectrum Disorder (ASD).</p>
+<p>This assessment can be used to apply for long-term care schemes administered by AIC for care recipients aged 16 years old and above. They can choose to have their level of support needs for ADL determined via the <a href="https://edge.sitecorecloud.io/agencyforinb6cc-agencyforin73f5-production08ac-d178/media/agency-for-integrated-care/Files/Financial-Assistance/Client-Assessment-Form.pdf" rel="noopener" target="_blank">CAF</a>.</p>
+<p>The CAF must be completed by CAF-Revised (CAF-R) certified assessor who is also a Physiotherapist (PT) or Occupational Therapist (OT) registered under Allied Health Professions Council (AHPC), for the purpose of applying for AIC-administered grants.</p>
+<p>If your loved one is currently attending a <a href="https://www.moe.gov.sg/special-educational-needs/sped-schools" rel="noopener" target="_blank">Special Education School</a> or disability care services such as <a href="https://www.enablingguide.sg/im-looking-for-disability-support/child-adult-care/day-activity-centres" rel="noopener" target="_blank">Day Activity Centres</a>, you can check if the school or service provider can do the CAF assessment. If they can, please check that the assessor is both CAF-R certified and OT or PT before proceeding with the assessment.</p>
+<p>If the school or service provider does not provide CAF assessment or if the care recipient with ID or ASD do not receive disability services from the community, you may approach these <a href="https://www.msf.gov.sg/media-room/article/Easing-applications-for-schemes-supporting-caregivers-of-persons-with-intellectual-disability-or-autism-spectrum-disorder" rel="noopener" target="_blank">Therapy Hubs</a> for CAF assessment. </p>
+<p>Please note that if the care recipient (aged 21 and above) lacks mental capacity to provide consent for the scheme application, <a href="https://edge.sitecorecloud.io/agencyforinb6cc-agencyforin73f5-production08ac-d178/media/agency-for-integrated-care/Files/Financial-Assistance/Functional-Assessment-Report.pdf" rel="noopener" target="_blank">Section B of the Functional Assessment Report</a>* needs to be submitted with the CAF. This form must be endorsed only by a registered medical doctor.  </p>
+<p><em>*Note that fees may apply for this assessment.</em></p>
+<div class="blk" data-b="faq_cap"><h3><p>3. What do I need to know if I am applying on behalf of my loved one who lacks mental capacity?</p></h3><p>You can apply on behalf of your loved one as long as:</p><ul>
+<li>You are the appointed Donee (appointed under the <a href="https://supportgowhere.life.gov.sg/services/SVC-LPA/lasting-power-attorney-lpa" rel="noopener" target="_blank">Lasting Power of Attorney</a>) or <a href="https://www.judiciary.gov.sg/family/deputyship" rel="noopener" target="_blank">Deputy</a> (appointed under the Mental Capacity Act) authorised to make decisions on his/ her property and affairs.</li>
+<li>If your loved one does not have a Donee or Deputy, you can apply on his/ her behalf if you are an immediate family member (parent, spouse or child. Otherwise, you can only apply on his/ her behalf if the immediate family members are unable to do this (eg deceased, lack mental capacity or other issues).  For successful applications without a donee/deputy, the caregiver or another family member has 12 months to obtain a court order appointing him/ her as a deputy, failing which the payouts will be suspended. Do visit the <a href="https://www.judiciary.gov.sg/family/deputyship" rel="noopener" target="_blank">Singapore Courts website</a> to find out how to apply for a deputyship.</li>
+<li>You may need the following documents:
+    <ul>
+<li>
+<p>Recent medical report stating that he/ she lacks mental capacity</p>
+<p>OR</p>
+<p>Doctor’s certification that he/ she lacks mental capacity</p>
+<ul>
+<li>If the care recipient is also going for a disability assessment, you must ask if the doctor can do a <a href="https://edge.sitecorecloud.io/agencyforinb6cc-agencyforin73f5-production08ac-d178/media/agency-for-integrated-care/Files/Financial-Assistance/Mental-Incapacity-Certification.pdf" rel="noopener" target="_blank">mental capacity assessment (using this form)</a> at the same time.</li>
+<li>The doctor’s certification is valid for six months, unless stated as permanent.</li>
+</ul>
+<p>OR</p>
+<p>Court order of deputy appointment</p>
+</li>
+<li>Copy of bank book or statement if the bank account nominated to receive the grant belongs to a deputy or trustee.</li>
+</ul>
+</li>
+</ul></div>
+<h3><p>4. What do I need to know if the care recipient is below the age of 21?</p></h3>
+<p>The care recipient’s parent or legal guardian may apply on their behalf.</p>
+<p>A legal guardian is someone lawfully appointed under the <a href="https://www.judiciary.gov.sg/family/guardianship" rel="noopener" target="_blank">Guardianship of Infants Act</a>.</p>
+<h3><p>5. Does the residential long-term care institution my loved one is living at disqualify us from applying for HCG?</p></h3>
+<p>To qualify for this grant, your loved one must not be living in any of the following residential long-term care institutions:</p>
+<ul>
+<li><a href="https://aic.sg/Care-Services/Nursing-Home" rel="noopener" target="_blank">Nursing Home</a></li>
+<li>Chronic Sick Hospital</li>
+<li>Psychiatric Rehabilitation Home</li>
+<li>Sheltered Home</li>
+<li>Welfare Home</li>
+<li>Senior Group Home</li>
+<li>Adult Disability Home</li>
+<li><a href="https://aic.sg/Care-Services/Inpatient-Hospice-Palliative-Care-Services" rel="noopener" target="_blank">Inpatient Hospice Palliative Care Service</a></li>
+</ul>
+<div class="blk" data-b="faq_means"><h3>
+<p>6. Tell me more about the means-testing criteria.</p>
+</h3><p>Household monthly income per person is the criteria used when there is a household income. (“Household” refers to the NRIC address)</p><p>It is calculated as the total gross household monthly income divided by the total number of family members living together in the household. Gross monthly household income includes basic employment income, trade/self-employed income, overtime pay, allowances, cash awards, commissions, and bonuses.</p><p>When there is no household income, Annual Value (AV) is used instead. AV is the estimated gross annual rent of a property if it were to be rented out, excluding furnishings and maintenance fees. It is determined by IRAS, and may be checked via <a href="https://mytax.iras.gov.sg/login/selection" rel="noopener" target="_blank">IRAS website</a>. Subsidy levels in 2026 will be determined using 2025 Annual Values.</p></div>
+<div class="blk" data-b="faq_hh"><h3>
+<p>7. How can I check or update my household information for means-testing?</p>
+</h3><p>To check or update your household information for means-testing, please use the <a href="https://medishieldlife.moh.gov.sg/" rel="noopener" target="_blank">MediShield Life Household Check e-Service</a>. Alternatively, you can call the Medishield Life Hotline at 1800 222 3399.</p></div>
+<h3><p>8. We are currently receiving the grant. How can we change details of the care recipient, bank account or opt out of the scheme?</p></h3>
+<p>To change scheme details / nominated bank account</p>
+<p>Log in with Singpass on <a href="https://efinance.aic.sg/" rel="noopener" target="_blank">eFASS</a>. Go to “Manage My Schemes” &gt; “Change in Scheme Details.”</p>
+<p>If you are updating the details for someone who lacks mental capacity for the first time, please read <a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant#q3" rel="noopener" target="_blank">here</a>.</p>
+<p>To stop receiving the grant</p>
+<p>Log in with Singpass on <a href="https://efinance.aic.sg/" rel="noopener" target="_blank">eFASS</a>. Go to “Manage My Schemes” &gt; “Change in Scheme Details.”</p>
+<p>If you are unable to do any of the above online, email <a href="mailto:apply@aic.sg" rel="noopener" target="_blank">apply@aic.sg</a> to obtain a copy of the application form or visit any <a href="https://www.aic.sg/Contact-Us" rel="noopener" target="_blank">AIC Link</a>. We seek your understanding that hardcopy applications will require a longer approval waiting time.</p>
+<div class="blk" data-b="faq_nric"><h3><p>9. Why do I need the NRIC issue date? How do I find it?</p></h3><p>AIC needs the NRIC issue date for verification. You can find it on the back of your NRIC card.</p></div>
+<h3><p>10. How do I ensure that my Functional Assessment Report (FAR) is completed?</p></h3>
+<h3><p>11. Where can I get more information about disability support and resources? </p></h3>
+<p>
+Visit <a href="https://www.enablingguide.sg/" rel="noopener" target="_blank">SG Enable’s Enabling Guide</a>, an online resource for persons with disabilities and their caregivers, as well as professionals looking for disability support.
+</p>
+<!--/REALPAGE-->
 
-  <form id="claim" onsubmit="return false"><h2>Application details <small>(mock form for this demo)</small></h2>
+  <form id="claim" onsubmit="return false"><h2>Practice form <small>(for this demo only. The real application is on eFASS with Singpass.)</small></h2>
     <div class="f" id="f-rel">Who do you care for?<span class="val" id="v-rel"></span></div>
     <div class="f" id="f-hrs">Hours of care per week<span class="val" id="v-hrs"></span></div>
     <div class="f" id="f-priv">Your private details <small>🔒 Kopi cannot see this part</small>
       <input placeholder="NRIC number" autocomplete="off" style="margin-top:6px"><input placeholder="Bank account number (for payouts)" autocomplete="off" style="margin-top:6px"></div>
     <button id="sub" disabled>Submit</button></form>
-  <div class="src">Mock-up for a student project, not an official page. Content adapted (paraphrased) from the Agency for Integrated Care's Home Caregiving Grant page,
-    <a href="https://www.aic.sg/Financial-Assistance/Home-Caregiving-Grant">aic.sg/Financial-Assistance/Home-Caregiving-Grant</a>. Check the official page for current rules.</div>
+  <div class="src">Demo for a student project. Page content © Agency for Integrated Care, shown here unchanged for demonstration. This is not an official page.</div>
 </main>
 
 <div id="cc"></div>
@@ -144,12 +226,13 @@ let ccOn=true,cur=null,curFin=null;
 const cap=t=>{const c=$('#cc');c.textContent=t||'';c.classList.toggle('show',!!t&&ccOn)};
 function stopSpeech(){if(cur){cur.pause();cur=null}if('speechSynthesis' in window)speechSynthesis.cancel();const f=curFin;curFin=null;f&&f()}
 function speak(text){stopSpeech();return new Promise(res=>{
-  let d=0;const fin=()=>{if(!d){d=1;cap('');$('#av').classList.remove('talk');res()}};curFin=fin;cap(text);
+  let d=0,fb=0;const fin=()=>{if(!d){d=1;cap('');res()}};curFin=fin;cap(text);
   const clip=typeof AUDIO!=='undefined'&&AUDIO['en|'+clean(text)];
-  if(clip){const a=new Audio(clip);cur=a;a.onended=fin;a.onerror=fin;a.play().catch(fin)}
-  else if('speechSynthesis' in window){const u=new SpeechSynthesisUtterance(text);u.lang='en-SG';u.rate=.9;u.onend=fin;u.onerror=fin;speechSynthesis.speak(u)}
-  else setTimeout(fin,Math.max(1500,text.length*70));
-  setTimeout(fin,text.length*120+6000)})}
+  const tts=()=>{if(fb||d)return;fb=1; // browser voice: only when there is no clip, or the clip could not load
+    if('speechSynthesis' in window){const u=new SpeechSynthesisUtterance(text);u.lang='en-SG';u.rate=.9;u.onend=fin;u.onerror=fin;speechSynthesis.speak(u)}
+    else setTimeout(fin,Math.max(1500,text.length*70))};
+  if(clip){const a=new Audio(clip);cur=a;a.onended=fin;a.onerror=tts;a.play().catch(tts)}else tts();
+  setTimeout(fin,text.length*120+8000)})}
 
 /* ---------- the little chat in the panel ---------- */
 const msgs=$('#msgs');let lastChips=[],locked=false;
@@ -168,12 +251,12 @@ function say(text,{cls='',chips=null,auto=true,wait=false}={}){
       ch.forEach(([label,fn])=>{const x=document.createElement('button');x.textContent=label;x.onclick=()=>{me(label);fn()};c.append(x)});msgs.append(c)}
     scroll();const sp=auto?speak(text):Promise.resolve();wait?sp.then(res):res()},450))}
 const openPanel=()=>{$('#panel').classList.add('open');document.body.classList.add('po')};
-const mainChips=()=>[['🔊 Read this page to me',readPage],['💬 Explain a part of the page',explainMode],['✏️ Help me with the form',formFlow],['🛡️ Is this page safe?',scanPage]];
+const mainChips=()=>[['🔊 Read the key parts to me',readPage],['💬 Explain a part of the page',explainMode],['✏️ Help me with the form',formFlow],['🛡️ Is this page safe?',scanPage]];
 const home=()=>{lastChips=mainChips()};
 
 /* ---------- 1. Reads aloud ---------- */
 let reading=false,tok=0;
-const mark=id=>document.querySelectorAll('.blk').forEach(b=>b.classList.toggle('reading',b.dataset.b===id));
+const mark=id=>document.querySelectorAll('[data-b]').forEach(b=>b.classList.toggle('reading',b.dataset.b===id));
 function setSpk(on){reading=on;$('#bSpk').classList.toggle('live',on);$('#bSpk').textContent=on?'⏹':'🔊'}
 async function readPage(){
   if(reading){stopRead();say(S.readStop,{chips:mainChips()});return}
@@ -190,13 +273,17 @@ $('#bSpk').onclick=readPage;
 /* ---------- 2. Explains clearly ---------- */
 let noteGiven=false;
 function explainMode(on=true){document.body.classList.toggle('explain',on);if(on===false)return;stopRead();
-  say(S.explainPrompt,{chips:[['🔊 Read this page to me',readPage],['✏️ Help me with the form',formFlow]]})}
+  say(S.explainPrompt,{chips:[['🔊 Read the key parts to me',readPage],['✏️ Help me with the form',formFlow]]})}
 async function explain(id){
-  document.querySelectorAll('.blk').forEach(b=>b.classList.toggle('picked',b.dataset.b===id));
+  document.querySelectorAll('[data-b]').forEach(b=>b.classList.toggle('picked',b.dataset.b===id));
   me('Explain: '+BL[id].read.split('.')[0]+'.');
-  await say(BL[id].explain,{chips:[['💬 Explain another part',()=>say(S.explainMore,{chips:mainChips()})],['🔊 Read this page to me',readPage]]});
+  await say(BL[id].explain,{chips:[['💬 Explain another part',()=>say(S.explainMore,{chips:mainChips()})],['🔊 Read the key parts to me',readPage]]});
   if(!noteGiven){noteGiven=true;say(S.explainNote,{cls:'hand',chips:null})}}
-document.querySelectorAll('.blk').forEach(b=>b.addEventListener('click',()=>{if(document.body.classList.contains('explain'))explain(b.dataset.b)}));
+document.querySelector('main').addEventListener('click',e=>{ // in explain mode, tap any part of the real page
+  if(!document.body.classList.contains('explain')||e.target.closest('#claim,a'))return;
+  const b=e.target.closest('[data-b]');
+  if(b)explain(b.dataset.b);
+  else if(e.target.closest('h1,h2,h3,p,li,td,th')){me('Explain this part.');say(S.noExplain,{chips:[['💬 Explain another part',()=>say(S.explainMore,{chips:mainChips()})],['🔊 Read the key parts to me',readPage]]})}});
 
 /* ---------- 3. Aided form-filling (private boxes stay with the user; the user presses Submit) ---------- */
 let st='chat';

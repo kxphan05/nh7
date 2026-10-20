@@ -23,14 +23,15 @@ let rate=0.9,cur=null;
 const EMOJI=/[\u{1F300}-\u{1FAFF}☀-➿⏸️]/gu;
 const clean=s=>s.replace(EMOJI,'').replace(/\s+/g,' ').trim();
 function speak(text){return new Promise(res=>{
-  const est=Math.max(800,text.length*90);let d=0;const f=()=>{if(!d){d=1;res()}};
+  const est=Math.max(800,text.length*90);let d=0,fb=0;const f=()=>{if(!d){d=1;res()}};
   if(cur){cur.pause();cur=null}
   if('speechSynthesis' in window)speechSynthesis.cancel();
   const clip=typeof AUDIO!=='undefined'&&AUDIO[L+'|'+clean(text)];
-  if(clip){const a=new Audio(clip);cur=a;a.playbackRate=rate/0.9;a.onended=f;a.onerror=f;a.play().catch(f);setTimeout(f,est*3+4000);return}
-  if(!('speechSynthesis' in window)){setTimeout(res,est);return}
-  const u=new SpeechSynthesisUtterance(text);u.lang=VOICE[L];u.rate=rate;u.onend=f;u.onerror=f;setTimeout(f,est*2+2000);speechSynthesis.speak(u)})}
-
+  const tts=()=>{if(fb||d)return;fb=1; // browser voice: only when there is no clip, or the clip could not load
+    if(!('speechSynthesis' in window)){setTimeout(f,est);return}
+    const u=new SpeechSynthesisUtterance(text);u.lang=VOICE[L];u.rate=rate;u.onend=f;u.onerror=f;setTimeout(f,est*2+2000);speechSynthesis.speak(u)};
+  if(clip){const a=new Audio(clip);cur=a;a.playbackRate=rate/0.9;a.onended=f;a.onerror=tts;a.play().catch(tts);setTimeout(f,est*3+4000);return}
+  tts()})}
 
 const X=(k,v)=>(XS[L][k]||XS.en[k]).replace('{v}',v??'');
 $('#txt').placeholder=X('ph');$('#disc').textContent=X('disc');

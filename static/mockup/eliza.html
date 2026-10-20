@@ -28,8 +28,8 @@ function add(cls,text){const m=document.createElement('div');m.className='m '+cl
   (m.querySelector('.body')||m.querySelector('.tx')).textContent=text;col.append(m);$('#scroll').scrollTo({top:1e6,behavior:'smooth'});return m}
 let cur=null;
 function speak(text){ // pre-recorded natural voice; silent if a clip is missing
-  const c=typeof AUDIO!=='undefined'&&AUDIO['en|'+text];if(!c)return;
-  if(cur)cur.pause();cur=new Audio(c);cur.playbackRate=.97;cur.play().catch(()=>{})}
+  const c=typeof AUDIO!=='undefined'&&AUDIO['en|'+text];if(!c)return; // no clip: stay silent
+  if(cur)cur.pause();cur=new Audio(c);cur.playbackRate=.97;const tts=()=>{if('speechSynthesis' in window){speechSynthesis.cancel();speechSynthesis.speak(new SpeechSynthesisUtterance(text))}};cur.onerror=tts;cur.play().catch(tts)}
 function kopi(text,cls='k'){const m=add(cls,'');const b=m.querySelector('.body');b.innerHTML='<span class="dots"><i></i><i></i><i></i></span>';
   setTimeout(()=>{b.textContent=text;speak(text);$('#scroll').scrollTo({top:1e6,behavior:'smooth'})},500+Math.min(text.length*12,900))}
 function send(){const v=$('#txt').value.trim();if(!v||over)return;$('#txt').value='';add('u',v);
