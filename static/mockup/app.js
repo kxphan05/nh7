@@ -1,5 +1,9 @@
 const $=s=>document.querySelector(s);
-const Q=new URLSearchParams(location.search);
+/* KOPI_QS is set when the page is inlined into Streamlit (no real URL there) */
+const Q=new URLSearchParams(window.KOPI_QS??location.search);
+const INLINE=window.KOPI_QS!==undefined; // inside Streamlit: language is picked by Streamlit's own bar, restart = reload
+const reload=l=>INLINE?location.reload():(location.href='?l='+l);
+if(INLINE)document.getElementById('lang').style.display='none';
 const L=STR[Q.get('l')]?Q.get('l'):'en';
 const t=(k,v)=>(STR[L][k]||STR.en[k]).replace('{v}',v??'');
 const UI={
@@ -9,7 +13,7 @@ const UI={
  ta:{greet:'காலை வணக்கம்',sub:'படிவத்தை ஒவ்வொரு சிறு படியாக நிரப்ப உதவுவேன்.',go:'☕ தொடங்கு',ph:'தட்டச்சு செய்யவும் அல்லது மைக்…',priv:'🔒 இந்தச் சாதனத்தில் மட்டும். முடிந்ததும் அழிக்கப்படும்.',person:'📞 ஒருவரிடம் பேசுங்கள்'}}[L];
 $('#greet').textContent=UI.greet;$('#sub').textContent=UI.sub;$('#go').textContent=UI.go;
 $('#txt').placeholder=UI.ph;$('#priv').textContent=UI.priv;$('#person').textContent=UI.person;$('#lang').value=L;$('#bigger').textContent=t('bigger');$('#privnote').textContent=t('privnote');
-$('#lang').onchange=e=>location.href='?l='+e.target.value;
+$('#lang').onchange=e=>reload(e.target.value);
 let fs=22;$('#bigger').onclick=()=>{fs=fs>=30?20:fs+2;document.documentElement.style.setProperty('--fs',fs+'px')};
 $('#dots').onclick=e=>{e.stopPropagation();$('#menu').classList.toggle('open')};
 document.addEventListener('click',()=>$('#menu').classList.remove('open'));
@@ -168,7 +172,7 @@ function pick(n,k,v,say){ // k: option key; v: text for the green box; say: how 
 function priv(){st='priv';setStep(5);spot('b-priv');ask('priv',[[t('done'),submit]],{cue:t('cue_type')});$('#b-priv input').focus({preventScroll:true})}
 function submit(){st='submit';spot('b-sub');$('#submit').disabled=false;$('#submit').classList.add('pulse');setStep(6);lastAsk={chips:[]};kopiSays(t('sub'),{cue:t('cue_press')});resume=null}
 $('#submit').onclick=()=>{ // always the user's own click
-  st='done';$('#submit').disabled=true;$('#submit').classList.remove('pulse');$('#submit').textContent=t('sent');setStep(0);lastAsk=null;kopiSays(t('fin'),{chips:[[t('finish'),()=>location.href='?l='+L]],idleMs:0})};
+  st='done';$('#submit').disabled=true;$('#submit').classList.remove('pulse');$('#submit').textContent=t('sent');setStep(0);lastAsk=null;kopiSays(t('fin'),{chips:[[t('finish'),()=>reload(L)]],idleMs:0})};
 
 /* ---------- human in the loop ---------- */
 const D={
