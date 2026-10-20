@@ -1,0 +1,11 @@
+[server]
+enableStaticServing = true
+headless = true
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "light"
+primaryColor = "#b5532a"
+backgroundColor = "#faf9f5"

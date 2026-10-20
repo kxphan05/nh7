@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate mockup/audio/*.mp3 and audio/manifest.js from mockup/i18n.js.
+"""Regenerate static/mockup/audio/*.mp3 and audio/manifest.js from static/mockup/i18n.js.
 
 Uses edge-tts (Microsoft neural voices, no API key). Setup:
     python3 -m venv .venv && .venv/bin/pip install edge-tts
@@ -15,7 +15,7 @@ import asyncio, hashlib, json, subprocess, sys
 from pathlib import Path
 import edge_tts
 
-ROOT = Path(__file__).resolve().parent.parent / "mockup"
+ROOT = Path(__file__).resolve().parent.parent / "static" / "mockup"
 AUDIO = ROOT / "audio"
 
 # Conversation-style voices sound least like a reading machine.

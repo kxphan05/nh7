@@ -17,5 +17,5 @@ class NoCache(SimpleHTTPRequestHandler):
 
 
 port = int(sys.argv[1]) if len(sys.argv) > 1 else 8770
-root = Path(__file__).resolve().parent.parent / "mockup"
+root = Path(__file__).resolve().parent.parent / "static" / "mockup"
 ThreadingHTTPServer(("", port), partial(NoCache, directory=str(root))).serve_forever()

@@ -8,6 +8,7 @@
 <script>
 const S=[['1. Opt-in help','index.html'],['2. Language','lang.html'],['3. Voice by chat','voice.html'],['4. Read aloud + plain language','read.html'],
  ['5. Fill + read back','fill.html'],['6. Private fields (user only)','private.html'],['7. User submits, data deleted','submit.html'],
+ ['ELIZA-style chatbot','eliza.html'],
  ['HITL: not sure → hotline','stop.html?why=unsure'],['HITL: silence → pause','stop.html?why=quiet'],['HITL: scam → halt','stop.html?why=scam']];
 const l=document.getElementById('l'),ul=document.getElementById('list');
 function draw(){ul.innerHTML='';S.forEach(([n,p])=>{const li=document.createElement('li'),a=document.createElement('a');

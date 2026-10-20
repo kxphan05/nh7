@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kopi · ELIZA</title>
+<link rel="stylesheet" href="app.css?v=3">
+<style>
+body{height:100%}
+.wrap{flex:1;min-height:0;display:flex;flex-direction:column}
+.m.k .tx{background:none}
+.m.k.hand .tx{background:#e8f1ff;border:1px solid #9bbbea;border-radius:14px;padding:12px 16px}
+.note2{max-width:720px;margin:0 auto;padding:6px 18px 0;font-size:.55em;color:var(--mute);text-align:center}
+</style></head>
+<body>
+<header class="top"><div class="brand">☕ Kopi<span>Kaki</span> · ELIZA mode</div>
+  <button onclick="location.href='presenter.html'">Menu</button><button onclick="location.reload()">New chat</button></header>
+<div class="wrap">
+  <div class="scroll" id="scroll"><div class="col" id="col"></div></div>
+  <div class="note2">A 1966-style ELIZA: keyword rules and reflection ("my" → "your"). It does not understand you. It just listens.</div>
+  <div class="composer"><div class="box" id="box"><input id="txt" placeholder="Tell Kopi what is on your mind…" autocomplete="off"><button class="send" id="send">➤</button></div></div>
+</div>
+<script src="eliza.js?v=1"></script>
+<script>
+const $=s=>document.querySelector(s),col=$('#col');
+// ---- chat UI ----
+let over=false;
+function add(cls,text){const m=document.createElement('div');m.className='m '+cls;
+  m.innerHTML=cls.startsWith('k')?'<div class="av">☕</div><div class="tx"><div class="body"></div></div>':'<div class="tx"></div>';
+  (m.querySelector('.body')||m.querySelector('.tx')).textContent=text;col.append(m);$('#scroll').scrollTo({top:1e6,behavior:'smooth'});return m}
+function kopi(text,cls='k'){const m=add(cls,'');const b=m.querySelector('.body');b.innerHTML='<span class="dots"><i></i><i></i><i></i></span>';
+  setTimeout(()=>{b.textContent=text;$('#scroll').scrollTo({top:1e6,behavior:'smooth'})},500+Math.min(text.length*12,900))}
+function send(){const v=$('#txt').value.trim();if(!v||over)return;$('#txt').value='';add('u',v);
+  const r=ELIZA.respond(v);if(r.hand||r.quit){over=true;$('#box').classList.add('off')}
+  kopi(r.text,r.hand?'k hand':'k')}
+$('#send').onclick=send;$('#txt').onkeydown=e=>{if(e.key==='Enter')send()};
+kopi('Hello, I am Kopi. Tell me what is on your mind. How are you coping today?');
+$('#txt').focus();
+</script></body></html>
