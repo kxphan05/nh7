@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate static/mockup/audio/*.mp3 and audio/manifest.js from static/mockup/i18n.js.
+"""Regenerate static/mockup/audio/*.mp3 and audio/manifest.js from i18n.js, xs.js and eliza.js (all under static/mockup/).
 
 Uses edge-tts (Microsoft neural voices, no API key). Setup:
     python3 -m venv .venv && .venv/bin/pip install edge-tts
@@ -50,11 +50,30 @@ console.log(JSON.stringify(out));
 """
 
 
+# Side-question / safety replies in xs.js that Kopi speaks
+XS_SPOKEN = ["didnt", "sens", "hi", "thx", "ai", "nric", "safe", "grant", "money", "time",
+             "bigger", "slow", "loud", "pvr", "sbr"]
+NODE_EXTRA = r"""
+const fs=require('fs');
+eval(fs.readFileSync(process.argv[1],'utf8')+';globalThis.XS=XS');
+const ELIZA=require(process.argv[2]);
+const EMOJI=/[\u{1F300}-\u{1FAFF}\u2600-\u27BF\u23F8\uFE0F]/gu;
+const clean=s=>s.replace(EMOJI,'').replace(/\s+/g,' ').trim();
+const keys=JSON.parse(process.argv[3]),out=[];
+for(const l of Object.keys(XS))for(const k of keys)if(XS[l][k])out.push([l,clean(XS[l][k])]);
+const L=ELIZA.lines();   // every ELIZA reply, so the listener speaks in the same natural voice
+for(const l of Object.keys(L))for(const t of L[l])out.push([l,clean(t)]);
+console.log(JSON.stringify(out));
+"""
+
+
 def lines():
     raw = subprocess.check_output(
         ["node", "-e", NODE, str(ROOT / "i18n.js"), json.dumps(SPOKEN),
          json.dumps(CONFIRM_VALUES), json.dumps(LANG_NAMES, ensure_ascii=False)])
-    return json.loads(raw)
+    extra = subprocess.check_output(
+        ["node", "-e", NODE_EXTRA, str(ROOT / "xs.js"), str(ROOT / "eliza.js"), json.dumps(XS_SPOKEN)])
+    return json.loads(raw) + json.loads(extra)
 
 
 async def main(force):
